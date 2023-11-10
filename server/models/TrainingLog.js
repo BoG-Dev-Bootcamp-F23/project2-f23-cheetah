@@ -6,12 +6,12 @@ const TrainingLogSchema = new Schema({
     user : {
         type: mongoose.Types.ObjectId,
         required: true,
-        ref: "user"
+        ref: "User"
     },
     animal: {
         type: mongoose.Types.ObjectId,
         required: true,
-        ref: "animal"
+        ref: "Animal"
 
     },
     title: {
