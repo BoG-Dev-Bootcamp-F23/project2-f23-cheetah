@@ -16,6 +16,9 @@ export default async function createTrainingLog(log) {
 
 
         const {user, animal} = log;
+        if (user === undefined || animal === undefined) {
+                throw new UserError("No user or animal identifier passed into the data.");
+        }
         //Check here if the animal exists or not
         potentialAnimal = await Animal.findById(animal);
         if (potentialAnimal === null) {
