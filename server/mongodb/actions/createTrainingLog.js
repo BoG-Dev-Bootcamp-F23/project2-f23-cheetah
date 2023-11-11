@@ -11,10 +11,24 @@ export default async function createTrainingLog(log) {
                 throw new ServerError("Failed to connect to Database.");
         }
         //Check and ensure that the user and animal exist in the database, as well as ensure the animal is the users animal.
+
+
+
+
         const {user, animal} = log;
+        //Check here if the animal exists or not
+        potentialAnimal = await Animal.findById(animal);
+        if (potentialAnimal === null) {
+                throw new UserError("Animal specified in training log doesn't exist.");
+        }
+
         potentialOwner = await User.findById(user);
+        //Check here if potentialOwner is null, if it is throw an error
+        if (potentialOwner === null) {
+                throw new UserError("User specified does not exist.");
+        }
         if (potentialOwner.id !== animal.owner) { //Is this how I access the object ID
-                throw new UserError("Specified user does not own this animal.")
+                throw new UserError("Specified user does not own this ;animal.");
 
         }
         trainingLog = new TrainingLog(log);
