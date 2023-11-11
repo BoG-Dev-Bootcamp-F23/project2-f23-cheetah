@@ -11,7 +11,7 @@ export class UserError extends Error {
     constructor(message) {
         super(message);
         this.name = "UserError";
-        this.statusCode = 400; //Because it is a server error.
+        this.statusCode = 400; //Because it is a user error.
     }
 
 }
