@@ -18,7 +18,7 @@ export default async function getUsers(data) {
             query._id = { $lt: lastObjectId}
         }
         const users = await User.find(query, { password: 0})
-            .sort({ _id: -1})
+            .sort({ _id: 1})
             .limit(pageSize)
         return users
     } catch (e) {
