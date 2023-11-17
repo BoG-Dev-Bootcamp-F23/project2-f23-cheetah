@@ -25,6 +25,7 @@ export default async function updateAnimal(data) {
         if (e.statusCode === 400) {
             throw new UserError("Invalid information.")
         } else {
+            console.log(e);
             throw new ServerError("Server Failure.")
         }
     }

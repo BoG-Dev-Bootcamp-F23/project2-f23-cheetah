@@ -12,8 +12,8 @@ export default async function handler(req, res) {
         }
     } else if (req.method === "DELETE") {
         try {
-            await deleteUser(req.query.userId)
-            return res.status(200).json({message: "Success"})
+            await deleteUser(req.query.identifier)
+            return res.status(200).send("Success")
         } catch (e) {
             return res.status(e.statusCode).json({message: e.message})
         }

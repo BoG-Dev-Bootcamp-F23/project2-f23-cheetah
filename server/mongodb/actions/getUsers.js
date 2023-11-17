@@ -11,7 +11,7 @@ export default async function getUsers(data) {
 
     try {
         const pageSize = 10;
-        const lastObjectId = data
+        const lastObjectId = data;
 
         let query = {}
         if (lastObjectId) {
