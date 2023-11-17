@@ -2,7 +2,7 @@ import connectDB from "../index";
 import User from "../models/User";
 import { ServerError, UserError } from "../../utils/errors"
 
-export default async function createUser(data) {
+export default async function verifyUser(data) {
     try {
         await connectDB();
     } catch (e) {
@@ -10,9 +10,8 @@ export default async function createUser(data) {
     }
 
     try {
-        const { email, password } = data
-        const user = await User.findOne({ email: email, password: password})
-        return { "_id": user._id, "admin": user.admin }
+        const user = await User.findOne({ email: data.email, password: data.password})
+        return { _id: user._id, admin: user.admin }
     } catch (e) {
         throw new ServerError("Invalid/insufficient information")
     }

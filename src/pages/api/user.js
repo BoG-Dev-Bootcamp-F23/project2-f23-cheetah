@@ -6,16 +6,16 @@ export default async function handler(req, res) {
         const body = req.body;
         try {
             await createUser(body);
-            return res.status(200).send("Success")
+            return res.status(200).json({message: "Success"})
         } catch (e) {
-            return res.status(e.statusCode).send(e.message)
+            return res.status(e.statusCode).json({message: e.message})
         }
     } else if (req.method === "DELETE") {
         try {
             await deleteUser(req.query.identifier)
             return res.status(200).send("Success")
         } catch (e) {
-            return res.status(e.statusCode).send(e.message)
+            return res.status(e.statusCode).json({message: e.message})
         }
     }
 }
