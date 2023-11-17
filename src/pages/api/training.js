@@ -6,6 +6,7 @@ export default async function handler(req,res) {
         try {
             await createTrainingLog(req.body);
         }catch (e) {
+            console.log(e);
             res.status(e.statusCode).send(e.message);
 
         }
@@ -14,6 +15,7 @@ export default async function handler(req,res) {
         try {
             await updateTrainingLog(req.body);
         }catch (e) {
+            console.log(e);
             res.status(e.statusCode).send(e.message);
         }
         res.status(200).send("Success");
@@ -24,7 +26,8 @@ export default async function handler(req,res) {
             await deleteTrainingLog(req.query.identifier);
             
         }catch (e) {
-            res.status(e.statusCode.send(e.message));
+            console.log(e);
+            res.status(e.statusCode).send(e.message);
         }
         res.status(200).send("Success");
 

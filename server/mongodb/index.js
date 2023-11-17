@@ -9,6 +9,7 @@ export default async function connectDB() {
         })
         .catch((e) => {
             console.error("Error connecting to database.");
+            console.log(e);
             throw e;
         });
 };
