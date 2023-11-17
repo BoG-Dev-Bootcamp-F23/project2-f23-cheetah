@@ -4,6 +4,7 @@ import {ServerError, UserError} from "../../utils/errors.js";
 import User from "../models/User.js";
 import Animal from "../models/Animal.js";
 import getAnimals from "./getAnimals.js";
+import mongoose from "mongoose";
 export default async function createTrainingLog(log) {
         try {
                 connectDB();
@@ -39,12 +40,21 @@ export default async function createTrainingLog(log) {
                 throw new UserError("Specified user does not own this animal.");
 
         }
-        const trainingLog = new TrainingLog(log);
-        await trainingLog.save();
-        console.log(trainingLog.hours);
-        console.log(potentialAnimal.hours);
+
+        let trainingLog;
+        try {
+                trainingLog = new TrainingLog(log);
+                await trainingLog.save();
+        }catch(e) {
+                if (e instanceof mongoose.Error.ValidationError || e instanceof mongoose.Error.CastError) {
+                        throw new UserError("Invalid or not enough information provided.");
+                }else {
+                        throw new ServerError("Failed to save traininglog in database.");
+                }
+        }
+       
         const newHours = potentialAnimal.hoursTrained + trainingLog.hours;
-        console.log(newHours);
+        
         await Animal.findByIdAndUpdate(animal,{hoursTrained:newHours});
 
         //Check and ensure that the animal is the users.

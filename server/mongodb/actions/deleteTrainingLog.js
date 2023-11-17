@@ -34,7 +34,6 @@ export default async function deleteTrainingLog(identifier) {
     console.log(animalID,":AnimalID");
     console.log(hours,": Hours");
     const animal = await Animal.findById(animalID);
-    
     await Animal.findByIdAndUpdate(animalID,{hoursTrained:(animal.hoursTrained - hours)});
 
 }
