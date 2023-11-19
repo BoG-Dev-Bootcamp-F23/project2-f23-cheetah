@@ -5,8 +5,8 @@ export default async function handler(req, res) {
     if (req.method === "POST") {
         const body = req.body;
         try {
-            await createUser(body);
-            return res.status(200).json({message: "Success"})
+            const newUser = await createUser(body);
+            return res.status(200).json({message: newUser})
         } catch (e) {
             return res.status(e.statusCode).json({message: e.message})
         }
