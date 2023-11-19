@@ -1,7 +1,8 @@
 import styles from '@/styles/Login.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-async function handleClick(fullName, email, password, confirm_password, admin) {
+async function handleClick(fullName, email, password, confirm_password, admin, router) {
     if (password !== confirm_password) {
         document.getElementById("error_message1").style.display='block'
         document.getElementById("error_message2").style.display='none'
@@ -25,14 +26,14 @@ async function handleClick(fullName, email, password, confirm_password, admin) {
         });
         const data = await response.json()
         if (data.message === "Success") {
-            console.log("move to training logs dashboard")
+            router.push("traininglogs")
         }
-    }
-
-    
+    } 
 }
 
 export default function CreateAccount() {
+    const router = useRouter()
+
     return (
         <div>
             <div className = {styles.loginContainer}>
@@ -53,6 +54,7 @@ export default function CreateAccount() {
                                 document.getElementById("password")?.value,
                                 document.getElementById("confirm_password")?.value,
                                 document.getElementById("admin_checkbox")?.checked,
+                                router
                     )
                 }}>Sign up</button>
                 <Link href="/login" className={styles.link}><p>Already have an account? <b>Sign in</b></p></Link>

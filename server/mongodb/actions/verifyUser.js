@@ -11,7 +11,7 @@ export default async function verifyUser(data) {
 
     try {
         const user = await User.findOne({ email: data.email, password: data.password})
-        return { _id: user._id, admin: user.admin }
+        return user
     } catch (e) {
         throw new ServerError("Invalid/insufficient information")
     }

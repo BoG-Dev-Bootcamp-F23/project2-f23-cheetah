@@ -12,7 +12,7 @@ export default async function createUser(data) {
     try {
         const user = new User(data);
         await user.save();
-        return true;
+        return user;
     } catch (e) {
         
         if (e._message === "User validation failed" | e.name === "CastError") {
