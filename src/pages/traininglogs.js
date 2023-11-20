@@ -16,10 +16,21 @@ const sampleTrainingObject = {
     __v: 0
 };
 //I will likely need to call the database to get access to animal and user information when displaying the trainingLog.
+
 export default function TrainingLogPage() {
-    const {id, login, logout} = useId();
+    const {id, login, logout, admin} = useId();
+    const [logList,setLogList] = useState([]);
+    useEffect(() => {
+        //Set training logList and everything
+        async function createList() {
+            const response = await fetch("/api/admin/training");
+            const data = await response.json();
+            setLogList(data);
+
+        }
+        createList();
+    },[]);
     //Use useId() to do conditional rendering based on whether this user is an admin or not.
-    console.log(id);
     return (
         <div className={styles.mainPage}>
             <Sidebar />
@@ -34,11 +45,11 @@ export default function TrainingLogPage() {
                
             </div>
             </div>
-            <TrainingLogDisplay {...sampleTrainingObject}/>
-            <TrainingLogDisplay {...sampleTrainingObject}/>
-            <TrainingLogDisplay {...sampleTrainingObject}/>
-            <TrainingLogDisplay {...sampleTrainingObject}/>
-
+            {logList.map((logItem) => (
+                <TrainingLogDisplay key={logItem._id} {...logItem} />
+                //Key prop provides react with a unique identifier for each object, making it easier for it to render.
+            ))}
+            
             </div>
             
             
