@@ -12,6 +12,7 @@ async function handleClick(fullName, email, password, confirm_password, admin, r
     } else {
         document.getElementById("error_message1").style.display='none'
         document.getElementById("error_message2").style.display='none'
+        console.log("Reached API ednpoint")
         const response = await fetch("/api/user", {
             method: "POST",
                 headers: {
@@ -24,7 +25,10 @@ async function handleClick(fullName, email, password, confirm_password, admin, r
                     admin: admin
                 })
         });
-        const data = await response.json()
+        console.log("Response received");
+        const data = await response.json();
+        console.log("Response parsed");
+        console.log(data);
         if (data.message === "Success") {
             router.push("traininglogs")
         }
@@ -49,6 +53,7 @@ export default function CreateAccount() {
                 <p id="error_message1" className={styles.errorMessage}>Passwords do not match</p>
                 <p id="error_message2" className={styles.errorMessage}>Please fill in all fields</p>
                 <button className={styles.loginButton} onClick={() => {
+                    console.log("Reached click");
                     handleClick(document.getElementById("full_name")?.value,
                                 document.getElementById("email")?.value,
                                 document.getElementById("password")?.value,

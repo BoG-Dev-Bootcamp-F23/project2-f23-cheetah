@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         const body = req.body;
         try {
             const newUser = await createUser(body);
-            return res.status(200).json({message: newUser})
+            return res.status(200).json({message: "Success"})
         } catch (e) {
             return res.status(e.statusCode).json({message: e.message})
         }
