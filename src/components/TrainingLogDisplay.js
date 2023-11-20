@@ -3,11 +3,26 @@ import Image from "next/image";
 import moment from "moment";
 import redpen from "@/images/redpen.png";
 import {useEffect, useState} from "react";
+//Need to create an API endpoint to do all of this stuff.
+
 
 export default function TrainingLogDisplay(props) {
-    const username =  "Ankith";
-    const animalBreed = "Golden Retriever";
-    const animalName = "Lucy";
+
+    const [username,setUsername] = useState("");
+    const [animalBreed,setAnimalBreed] = useState("");
+    const [animalName,setAnimalName] = useState(""); 
+
+    useEffect(() => {
+        //This useEffect will run when loading to set username and animal breed and animal name.
+        async function getInfo(user,animal) {
+            const URL = `/api/getinfo?user=${user}&animal=${animal}`;
+            const response = await fetch(URL);
+            const data = await response.json();
+            setUsername(data.username);
+            setAnimalBreed(data.animalname);
+            setAnimalName(data.breed);
+        }
+        getInfo(props.user,props.animal)},[]);
     const day = moment(props.date).format("D");
     const monthAndYear = moment(props.date).format("MMM - YYYY");
 
