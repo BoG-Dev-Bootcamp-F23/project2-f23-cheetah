@@ -1,0 +1,36 @@
+@import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
+
+.mainPage {
+    display: flex;
+    flex-direction: row;
+    font-family: "Heebo";
+    color: #7C7171;
+    
+
+}
+.trainingStuff {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+}
+.headerBox {
+    border-bottom: solid;
+}
+.header {
+
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-top: 30px;
+    font-size: 15px;
+    width: 90%;
+    font-weight: bold;
+
+}
+.create {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 15%;
+}
