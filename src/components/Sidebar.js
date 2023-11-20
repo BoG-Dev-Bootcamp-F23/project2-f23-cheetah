@@ -12,6 +12,7 @@ import logout_icon from '@/images/logout.png'
 
 export default function Sidebar() {
     const { id, login, logout, admin, userName } = useAuth();
+    
 
     return (
         <div>

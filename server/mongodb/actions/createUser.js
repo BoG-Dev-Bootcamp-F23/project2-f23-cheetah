@@ -1,7 +1,7 @@
 import connectDB from "../index";
 import User from "../models/User";
 import { ServerError, UserError } from "../../utils/errors"
-
+import bcrypt from "bcrypt";
 export default async function createUser(data) {
     try {
         await connectDB();
@@ -10,6 +10,7 @@ export default async function createUser(data) {
     }
 
     try {
+        data.password = await bcrypt.hash(data.password,11); //10 is the number of saltrounds.
         const user = new User(data);
         await user.save();
         return user;
