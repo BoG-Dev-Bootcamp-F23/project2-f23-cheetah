@@ -3,7 +3,8 @@ import useId from '../hooks/useAuth'
 import TrainingLogDisplay from '@/components/TrainingLogDisplay';
 import styles from "@/styles/TrainingPage.module.css";
 import {useState, useEffect} from "react";
-
+import Image from "next/image";
+import add from "@/images/icon-park-outline_addadd.png";
 const sampleTrainingObject = {
     _id: "655ad54dd57dbc42b4779bca",
     user: "655712cf04789adf1b86d592",
@@ -22,8 +23,26 @@ export default function TrainingLogPage() {
     return (
         <div className={styles.mainPage}>
             <Sidebar />
+            <div className={styles.trainingStuff}>
+            <div className = {styles.headerBox}>
+            <div className={styles.header}>
+
+                <span>Training Logs</span>
+                <span className={styles.create}>
+                    <Image src={add} width="15"/>
+                    Create new</span>
+               
+            </div>
+            </div>
             <TrainingLogDisplay {...sampleTrainingObject}/>
+            <TrainingLogDisplay {...sampleTrainingObject}/>
+            <TrainingLogDisplay {...sampleTrainingObject}/>
+            <TrainingLogDisplay {...sampleTrainingObject}/>
+
+            </div>
+            
             
         </div>
+        
     )
 }
