@@ -2,7 +2,7 @@ import getAnimals from "../../../../server/mongodb/actions/getAnimals.js";
 export default async function handler(req,res) {
     if (req.method === "GET") {
         try {
-            const animals = await getAnimals(req.query);
+            const animals = await getAnimals(req.query.lastObjectId);
             res.status(200).json(animals);
         }catch (e) {
             res.status(e.statusCode).send(e.message);

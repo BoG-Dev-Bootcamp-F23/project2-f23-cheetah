@@ -8,18 +8,20 @@ export default async function getAnimals(data) {
     } catch (e) {
         throw new ServerError("Failed to connect to the database.")
     }
-
+    
     try {
-        const lastObjectId = data
-        const pageSize = 10
+        const pageSize = 10;
+        const lastObjectId = data;
+
         let query = {}
         if (lastObjectId) {
-            query = await Animal.find({"_id": {'$lt': lastObjectId}}).sort({_id:1}).limit(pageSize)
-        } else {
-            query = await Animal.find().sort({_id:1}).limit(pageSize)
+            query._id = { $lt: lastObjectId}
         }
-        return query
+        const animals = await Animal.find(query)
+            .sort({ _id: 1})
+            .limit(pageSize)
+        return animals
     } catch (e) {
-        throw new ServerError("Server Failure.")
+        throw new ServerError("Server failure")    
     }
 }
