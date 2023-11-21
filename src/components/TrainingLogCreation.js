@@ -4,6 +4,9 @@ import {useState, useEffect} from "react";
 //For now, the way it is implemented, a user can only create a log 
 //associated with itself, even if it is admin, it can only delete any traininglog,
 //But can't edit user assosciated with such a training log.
+
+
+
 async function saveLog(title,animal,hours,month,day,year,note) {
 
     console.log(title,animal,hours,month,day,year,note);
@@ -14,7 +17,32 @@ async function saveLog(title,animal,hours,month,day,year,note) {
 
 
 export default function LogCreation() {
-    const [title,setTitle] = useState("Title");
+    //Temporary current user id.
+    const user = "655712cf04789adf1b86d592";
+    const [animalSelections,setAnimalSelections] = useState([]);
+    useEffect(()=>{
+       
+        async function createAnimalSelections(user) {
+            
+            const URL = `/api/animalsforuser?user=${user}`;
+           
+            const response = await fetch(URL);
+            
+            const animals = await response.json();
+            const animalSelectionsList = [];
+           
+            animals.forEach((animal)=> {
+                animalSelectionsList.push([animal._id,animal.name,animal.breed]);
+            });
+            
+            setAnimalSelections(animalSelectionsList);
+            
+        }
+        
+        createAnimalSelections(user);
+        console.log(animalSelections);
+    },[]);
+
     return <>
             <label>
                 Title
@@ -23,7 +51,14 @@ export default function LogCreation() {
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
             <label>
                 Select Animal
-                <input type="text" id="animal" placeholder="animal"/>
+                <select id="animal">
+                    {animalSelections.map((animal) => {
+                        console.log("HERE");
+                        return <option key={animal[0]} value={animal[0]}>{animal[1]} {animal[2]}</option>
+                    })}
+
+                </select>
+                
             </label>
             <label>
                 Total Hours Trained
@@ -53,7 +88,7 @@ export default function LogCreation() {
             </label>
             <label>
                 Year
-                <input type="number" id="year"placeholder="Day"/>
+                <input type="number" id="year"placeholder="Year"/>
             </label>
             <label>
                 Note
