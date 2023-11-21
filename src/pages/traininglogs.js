@@ -38,7 +38,7 @@ export default function TrainingLogPage() {
             <div className = {styles.headerBox}>
             <div className={styles.header}>
 
-                <span>Training Logs</span>
+                <span className={styles.contentType}>Training Logs</span>
                 <span className={styles.create}>
                     <Image src={add} width="15"/>
                     Create new</span>

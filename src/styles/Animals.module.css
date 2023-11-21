@@ -1,28 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
 
-.mainPage {
+.animalsPage {
     display: flex;
     flex-direction: row;
     font-family: "Heebo";
     color: #7C7171;
-    
-
 }
 
-.contentType {
-    font-size: 17px;
-}
-.trainingStuff {
+.animalContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-left: 10px;
 }
+
+.contentType {
+    font-size: 17px;
+}
+
 .headerBox {
     border-bottom: solid;
 }
-.header {
 
+.header {
     display: flex;
     justify-content: space-between;
     margin: 10px;
@@ -30,8 +30,8 @@
     font-size: 15px;
     width: 90%;
     font-weight: bold;
-
 }
+
 .create {
     display: flex;
     align-items: center;
