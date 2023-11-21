@@ -1,28 +1,43 @@
 @import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
 
-.mainPage {
+.animalsPage {
     display: flex;
     flex-direction: row;
     font-family: "Heebo";
     color: #7C7171;
-    
-
 }
 
-.contentType {
-    font-size: 17px;
+.animalList {
+    display: grid;
+    grid-template-columns: 34% 34% 34%;
+    margin-left: 30px;
+    margin-top: 50px;
 }
-.trainingStuff {
+.animalContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-left: 10px;
 }
+
+.animal {
+    margin-bottom: 40px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentType {
+    font-size: 17px;
+}
+
 .headerBox {
     border-bottom: solid;
 }
-.header {
 
+.header {
     display: flex;
     justify-content: space-between;
     margin: 10px;
@@ -30,13 +45,26 @@
     font-size: 15px;
     width: 90%;
     font-weight: bold;
-
 }
+
 .create {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    border-style: none;
-
     width: 15%;
+}
+
+.user_logo {
+    background-color: #d21312;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 7px;
+}
+.first_letter {
+    font-size: 25px;
 }
