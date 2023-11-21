@@ -7,11 +7,26 @@
     color: #7C7171;
 }
 
+.animalList {
+    display: grid;
+    grid-template-columns: 34% 34% 34%;
+    margin-left: 30px;
+    margin-top: 50px;
+}
 .animalContent {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-left: 10px;
+}
+
+.animal {
+    margin-bottom: 40px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
 }
 
 .contentType {
@@ -37,4 +52,19 @@
     align-items: center;
     justify-content: space-around;
     width: 15%;
+}
+
+.user_logo {
+    background-color: #d21312;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 7px;
+}
+.first_letter {
+    font-size: 25px;
 }
