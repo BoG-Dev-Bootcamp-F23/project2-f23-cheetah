@@ -17,7 +17,7 @@ export default function TrainingLogCreation(props) {
     //Temporary current user id.
     const user = "655712cf04789adf1b86d592";
     const [animalSelections,setAnimalSelections] = useState([]);
-    const [errorMessage,setErrorMessage] = useState("");
+    const [errorMessage,setErrorMessage] = useState(" ");
    
     async function saveLog(title,animal,hours,month,day,year,note) {
         //Below ensures all input boxes are ch
@@ -44,7 +44,7 @@ export default function TrainingLogCreation(props) {
         const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours};
         await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
-        setErrorMessage("");
+        setErrorMessage(" ");
         setCreate(false);
         //Create animal selection criteria
     }
@@ -74,15 +74,15 @@ export default function TrainingLogCreation(props) {
         console.log(animalSelections);
     },[]);
 
-    return <>
-            <label>
+    return <div className={styles.form}>
+            <label className={styles.button}>
                 Title
             <input type="text" id="title" className = {styles.input} placeholder="Title" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
-            <label>
+            <label className={styles.button}>
                 Select Animal
-                <select id="animal">
+                <select id="animal" className = {styles.input}>
                     {animalSelections.map((animal) => {
                         return <option key={animal[0]} value={animal[0]}>{animal[1]} - {animal[2]}</option>
                     })}
@@ -90,13 +90,14 @@ export default function TrainingLogCreation(props) {
                 </select>
                 
             </label>
-            <label>
+            <label className={styles.button}>
                 Total Hours Trained
             <input type="number" id="hours"className = {styles.input} placeholder="Hours" min="0" />
             </label>
-            <label>
+            <div className={styles.date}>
+            <label className={styles.button}>
                 Month
-            <select id="month"name="month">
+            <select id="month"name="month" className = {styles.input}> 
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -112,22 +113,24 @@ export default function TrainingLogCreation(props) {
 
             </select>
             </label>
-            <label>
+            <label className={styles.button}>
                 Day
-                <input type="number" id="day" placeholder="Day" min="0"/>
+                <input type="number" id="day" className = {styles.input}placeholder="Day" min="0"/>
             </label>
-            <label>
+            <label className={styles.button}>
                 Year
-                <input type="number" id="year"placeholder="Year" min="0"/>
+                <input type="number" id="year" className = {styles.input} placeholder="Year" min="0"/>
             </label>
-            <label>
+            </div>
+            <label className={styles.button}>
                 Note
             <input type="text" id="note"className = {styles.input} placeholder="Note" />
             </label>
             <div>
             {errorMessage}
             </div>
-            <button onClick={() => {saveLog(document.getElementById("title")?.value,
+            <div className={styles.buttons} id="save">
+            <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("month")?.value,
@@ -136,8 +139,8 @@ export default function TrainingLogCreation(props) {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
-            <button onClick={cancel}>Cancel</button>
-    
-        </>
+            <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
+            </div>
+        </div>
 
 }
