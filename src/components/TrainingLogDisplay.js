@@ -28,7 +28,7 @@ export default function TrainingLogDisplay(props) {
 
     return <>
     <div className = {styles.log}>
-        
+        <div className={styles.leftContent}>
         <div className = {styles.dateStuff}>
             <div className = {styles.day}>
                 {day}
@@ -48,6 +48,7 @@ export default function TrainingLogDisplay(props) {
                 {username} - {animalBreed} - {animalName}
             </div>
             <div>{props.description}</div>
+        </div>
         </div>
     <div className={styles.redpen}>
     <Image src={redpen} width="50"/>

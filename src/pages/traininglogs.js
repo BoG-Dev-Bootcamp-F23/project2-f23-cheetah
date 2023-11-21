@@ -5,16 +5,7 @@ import styles from "@/styles/TrainingPage.module.css";
 import {useState, useEffect} from "react";
 import Image from "next/image";
 import add from "@/images/icon-park-outline_addadd.png";
-const sampleTrainingObject = {
-    _id: "655ad54dd57dbc42b4779bca",
-    user: "655712cf04789adf1b86d592",
-    animal: "655acf6bb111395b7a319bec",
-    title: "Complete Sit Lessons",
-    date: "2020-09-21T04:00:00.000Z",
-    description: "Lucy finishes the sit lessons very well today. Should give here a treat.",
-    hours: 23,
-    __v: 0
-};
+import TrainingLogCreation from "@/components/TrainingLogCreation";
 //I will likely need to call the database to get access to animal and user information when displaying the trainingLog.
 
 export default function TrainingLogPage() {
@@ -45,6 +36,7 @@ export default function TrainingLogPage() {
                
             </div>
             </div>
+            <TrainingLogCreation/>
             {logList.map((logItem) => (
                 <TrainingLogDisplay key={logItem._id} {...logItem} />
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.
