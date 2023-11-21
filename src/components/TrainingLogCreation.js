@@ -11,12 +11,12 @@ import moment from "moment";
 
 
 
-export default function LogCreation() {
-
+export default function TrainingLogCreation(props) {
+    const {setCreate} = props;
     //Temporary current user id.
     const user = "655712cf04789adf1b86d592";
     const [animalSelections,setAnimalSelections] = useState([]);
-    const [errorMessage,setErrorMessage] = useState("22");
+    const [errorMessage,setErrorMessage] = useState("");
     async function saveLog(title,animal,hours,month,day,year,note) {
         //Below ensures all input boxes are ch
         if (title === "" || hours === "" || day === "" || year === "" || note === "") {
@@ -43,7 +43,11 @@ export default function LogCreation() {
         await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage("");
+        setCreate(false);
         //Create animal selection criteria
+    }
+    function cancel() {
+        setCreate(false);
     }
     useEffect(()=>{
        
@@ -130,6 +134,7 @@ export default function LogCreation() {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
+            <button onClick={cancel}>Cancel</button>
     
         </>
 
