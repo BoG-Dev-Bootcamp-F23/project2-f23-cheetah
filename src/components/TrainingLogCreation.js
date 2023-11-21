@@ -18,6 +18,7 @@ export default function TrainingLogCreation(props) {
     const user = "655712cf04789adf1b86d592";
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState("");
+   
     async function saveLog(title,animal,hours,month,day,year,note) {
         //Below ensures all input boxes are ch
         if (title === "" || hours === "" || day === "" || year === "" || note === "") {

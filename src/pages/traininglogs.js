@@ -7,7 +7,7 @@ import Image from "next/image";
 import add from "@/images/icon-park-outline_addadd.png";
 import TrainingLogCreation from "@/components/TrainingLogCreation";
 import TrainingLogEdit from "@/components/TrainingLogEdit";
-import { set } from 'mongoose';
+import useDebounce from "@/hooks/useDebounce";
 //I will likely need to call the database to get access to animal and user information when displaying the trainingLog.
 
 export default function TrainingLogPage() {
@@ -15,8 +15,10 @@ export default function TrainingLogPage() {
     const [edit,setEdit] = useState(false);
     const {id, login, logout, admin} = useId();
     const [logList,setLogList] = useState([]);
+    const debouncedEdit = useDebounce(edit, 400);
     useEffect(() => {
         //Set training logList and everything
+        
         async function createList() {
             const response = await fetch("/api/admin/training");
             const data = await response.json();
@@ -24,7 +26,7 @@ export default function TrainingLogPage() {
 
         }
         createList();
-    },[create,edit]);
+    },[create,debouncedEdit]);
     //Use useId() to do conditional rendering based on whether this user is an admin or not.
     return (
         <div className={styles.mainPage}>
@@ -36,7 +38,7 @@ export default function TrainingLogPage() {
 
                 <span>Training Logs</span>
                 {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
-                    <Image src={add} width="15"/>
+                    <Image src={add} alt="" width="15"/>
                     Create new</button>}
                 
                
@@ -46,7 +48,7 @@ export default function TrainingLogPage() {
             {create ? <TrainingLogCreation setCreate={setCreate}/> : <></>}
             {(create || edit) ? <></> : <div>
             {logList.map((logItem) => (
-                <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} />
+                <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} />
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.
             ))}
             </div>}

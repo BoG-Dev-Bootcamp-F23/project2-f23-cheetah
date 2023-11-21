@@ -13,11 +13,13 @@ import moment from "moment";
 
 export default function TrainingLogEdit(props) {
     let {setEdit, edit} = props;
-    console.log(edit);
     //Temporary current user id.
     //Deconstruct day value here.
+    console.log(edit);
     const day = moment(edit.date).format("D");
     const year = moment(edit.date).format("YYYY");
+    const month = moment(edit.date).format("MM") - 1;
+    
     const user = "655712cf04789adf1b86d592";
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState("");
@@ -39,11 +41,12 @@ export default function TrainingLogEdit(props) {
             return;
         }
         let date = myMoment.toISOString();
-        console.log(date);
+        
         const URL = `/api/training`;
 
         
         const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours,identifier:edit._id};
+        console.log(data);
         await fetch(URL,{method: "PATCH",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage("");
@@ -51,8 +54,15 @@ export default function TrainingLogEdit(props) {
         //Create animal selection criteria
     }
     function cancel() {
-        console.log("Cancel");
+        
         setEdit(false);
+    }
+    async function deleteLog() {
+        const URL = `/api/training/?identifier=${edit._id}`;
+        await fetch(URL,{method: "DELETE"});
+        setEdit(false);
+        
+
     }
     useEffect(()=>{
        
@@ -63,10 +73,15 @@ export default function TrainingLogEdit(props) {
             const response = await fetch(URL);
             
             const animals = await response.json();
-            const animalSelectionsList = [];
+            let animalSelectionsList = [];
            
             animals.forEach((animal)=> {
+                if (animal._id === edit.animal) {
+                    animalSelectionsList = [[animal._id,animal.name,animal.breed],...animalSelectionsList];
+
+                }else {
                 animalSelectionsList.push([animal._id,animal.name,animal.breed]);
+                }
             });
             
             setAnimalSelections(animalSelectionsList);
@@ -74,7 +89,6 @@ export default function TrainingLogEdit(props) {
         }
         
         createAnimalSelections(user);
-        console.log(animalSelections);
     },[]);
 
     return <>
@@ -86,8 +100,11 @@ export default function TrainingLogEdit(props) {
             <label>
                 Select Animal
                 <select id="animal">
+                    {/* Instead of using a default value I can ensure the first value displayed is the one I want. I */}
                     {animalSelections.map((animal) => {
+                        
                         return <option key={animal[0]} value={animal[0]}>{animal[1]} - {animal[2]}</option>
+                    
                     })}
 
                 </select>
@@ -99,7 +116,7 @@ export default function TrainingLogEdit(props) {
             </label>
             <label>
                 Month
-            <select id="month"name="month">
+            <select id="month"name="month" defaultValue={month}>
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -140,6 +157,7 @@ export default function TrainingLogEdit(props) {
             
             }}>Save</button>
             <button onClick={cancel}>Cancel</button>
+            <button onClick={deleteLog}>Delete</button>
     
         </>
 
