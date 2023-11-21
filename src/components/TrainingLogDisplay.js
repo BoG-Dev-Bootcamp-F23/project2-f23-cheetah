@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 
 
 export default function TrainingLogDisplay(props) {
-
+    const {setEdit, edit} = props;
     const [username,setUsername] = useState("");
     const [animalBreed,setAnimalBreed] = useState("");
     const [animalName,setAnimalName] = useState(""); 
@@ -18,11 +18,12 @@ export default function TrainingLogDisplay(props) {
             const URL = `/api/getinfo?user=${user}&animal=${animal}`;
             const response = await fetch(URL);
             const data = await response.json();
+            //Perhaps by the time this runs the database has not been updated yet.
             setUsername(data.username);
             setAnimalBreed(data.animalname);
             setAnimalName(data.breed);
         }
-        getInfo(props.user,props.animal)},[]);
+        getInfo(props.user,props.animal)},[edit]);
     const day = moment(props.date).format("D");
     const monthAndYear = moment(props.date).format("MMM - YYYY");
 
@@ -50,9 +51,11 @@ export default function TrainingLogDisplay(props) {
             <div>{props.description}</div>
         </div>
         </div>
-    <div className={styles.redpen}>
+    <button onClick={()=>{
+        setEdit(props);
+    }}className={styles.redpen}>
     <Image src={redpen} width="50"/>
-    </div>
+    </button>
     </div>
     </>
 

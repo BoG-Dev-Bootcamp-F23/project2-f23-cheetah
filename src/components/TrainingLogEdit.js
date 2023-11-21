@@ -11,10 +11,13 @@ import moment from "moment";
 
 
 
-export default function TrainingLogCreation(props) {
-    const {setCreate} = props;
-    
+export default function TrainingLogEdit(props) {
+    let {setEdit, edit} = props;
+    console.log(edit);
     //Temporary current user id.
+    //Deconstruct day value here.
+    const day = moment(edit.date).format("D");
+    const year = moment(edit.date).format("YYYY");
     const user = "655712cf04789adf1b86d592";
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState("");
@@ -39,16 +42,17 @@ export default function TrainingLogCreation(props) {
         console.log(date);
         const URL = `/api/training`;
 
-        console.log(title,animal,hours,month,day,year,note);
-        const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours};
-        await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
+        
+        const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours,identifier:edit._id};
+        await fetch(URL,{method: "PATCH",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage("");
-        setCreate(false);
+        setEdit(false);
         //Create animal selection criteria
     }
     function cancel() {
-        setCreate(false);
+        console.log("Cancel");
+        setEdit(false);
     }
     useEffect(()=>{
        
@@ -76,7 +80,7 @@ export default function TrainingLogCreation(props) {
     return <>
             <label>
                 Title
-            <input type="text" id="title" className = {styles.input} placeholder="Title" />
+            <input type="text" id="title" defaultValue={edit.title}className = {styles.input} placeholder="Title" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
             <label>
@@ -91,7 +95,7 @@ export default function TrainingLogCreation(props) {
             </label>
             <label>
                 Total Hours Trained
-            <input type="number" id="hours"className = {styles.input} placeholder="Hours" min="0" />
+            <input type="number" id="hours" defaultValue={edit.hours} className = {styles.input} placeholder="Hours" min="0" />
             </label>
             <label>
                 Month
@@ -113,15 +117,15 @@ export default function TrainingLogCreation(props) {
             </label>
             <label>
                 Day
-                <input type="number" id="day" placeholder="Day" min="0"/>
+                <input type="number" id="day" defaultValue={day} placeholder="Day" min="0"/>
             </label>
             <label>
                 Year
-                <input type="number" id="year"placeholder="Year" min="0"/>
+                <input type="number" id="year" defaultValue={year}placeholder="Year" min="0"/>
             </label>
             <label>
                 Note
-            <input type="text" id="note"className = {styles.input} placeholder="Note" />
+            <input type="text" id="note" defaultValue={edit.description} className = {styles.input} placeholder="Note" />
             </label>
             <div>
             {errorMessage}
