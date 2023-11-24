@@ -1,19 +1,31 @@
-import { useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 
-const useAuth = () => {
-    const [id, setId] = useState("6556af90510103a8a97e8386");
-    const [admin, setAdmin] = useState(true);
-    const [userName, setUserName] = useState("test2");
+const AuthContext = createContext();
 
-    const login = (userId) => {
-        setId(userId)
+export const AuthProvider = ({ children }) => {
+    const [userId, setUserId] = useState(null);
+    const [admin, setAdmin] = useState(null);
+    const [username, setUsername] = useState(null);
+
+    const login = (data) => {
+        setUserId(data._id)
+        setAdmin(data.admin)
+        setUsername(data.fullName)
     }
 
-    function logout() {
-        setId(null)
-    }
+    const logout = () => {
+        setUserId(null)
+        setAdmin(null)
+        setUsername(null)
+    };
 
-    return {id, login, logout, admin, userName};
+    return (
+        <AuthContext.Provider value={{ userId, admin, username, login, logout }}>
+            {children}
+        </AuthContext.Provider>
+    )
 }
 
-export default useAuth;
+export const useAuth = () => {
+    return useContext(AuthContext);
+}

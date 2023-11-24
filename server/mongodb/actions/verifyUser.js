@@ -11,19 +11,17 @@ export default async function verifyUser(data) {
     }
 
     try {
-        
-        //Make sure earlier not to create multiple users with the same email.
         const user = await User.findOne({ email: data.email});
         const existingHash = user.password;
-        const match = await bcrypt.compare(data.password,existingHash);
-        console.log("Match",match);
+        const match = await bcrypt.compare(data.password, existingHash);
+
         if (match) {
             return user;
-        }else {
-            return null;
+        } else {
+            throw new ServerError("Invalid/insufficient information")
         }
+        
     } catch (e) {
-        console.log(e);
         throw new ServerError("Invalid/insufficient information")
     }
 }
