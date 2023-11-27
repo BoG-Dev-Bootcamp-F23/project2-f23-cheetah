@@ -14,7 +14,7 @@ export default function SearchBar(props) {
         <input type="text" id="search" className = {styles.input} placeholder="Search" onChange={()=>{
             let newString = search.value.trim();
             newString = newString.toLowerCase();
-            setCurrentSearch(search.value);
+            setCurrentSearch(newString);
         }}/>
         
         </div>}

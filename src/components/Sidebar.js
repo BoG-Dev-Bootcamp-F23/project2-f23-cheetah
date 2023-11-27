@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import Link from 'next/link'
 import styles from '@/styles/Sidebar.module.css'
@@ -10,28 +10,37 @@ import animals_icon from '@/images/animals_icon.png'
 import training_logs_icon from '@/images/training_logs_icon.png'
 import training_logs_icon_white from '@/images/training_logs_icon_white.png'
 import logout_icon from '@/images/logout.png'
+import { useRouter } from 'next/router';
 
 
-export default function Sidebar() {
+export default function Sidebar(props) {
     const {userId, admin, username, login, logout} = useAuth();
-
+    //const [selected,setSelected] = useState("traininglogs");
+    const {selected, setSelected} = props;
+    const router = useRouter();
     return (
         <div>
             <div className={styles.sidebar}>
                 <div className={styles.user_container}>
-                    <div className={styles.sidebar_tab_activated}>
-                        <Image src={training_logs_icon_white} width={20} height={20} className={styles.sidebar_icon}/>
+                    <div className={(selected === "traininglogs") ? styles.sidebar_tab_activated: styles.sidebar_tab} onClick={()=>{
+                        router.push("/traininglogs");
+                    }}>
+                        <Image src={training_logs_icon_white} width={20} height={20} className={(selected === "traininglogs")? styles.sidebar_icon :styles.sidebar_icon_selected}/> 
                         <p>Training logs</p>
                     </div>
-                    <div className={styles.sidebar_tab}>
-                        <Image src={animals_icon} width={20} height={20} className={styles.sidebar_icon}/>
+                    <div className={(selected === "animals") ? styles.sidebar_tab_activated: styles.sidebar_tab}onClick={()=>{
+                            router.push("/animals");
+                        }}>
+                        <Image src={animals_icon} width={20} height={20} className={(selected === "animals")? styles.sidebar_icon_selected :styles.sidebar_icon}/>
                         <p>Animals</p>
                     </div>
                 </div>
                 {admin? <div className={styles.admin_container}>
                     <p className={styles.sidebar_header}><b>Admin access</b></p>
-                    <div className={styles.sidebar_tab}>
-                        <Image src={all_training_icon} width={20} height={20} className={styles.sidebar_icon}/>
+                    <div className={(selected === "traininglogsadmin") ? styles.sidebar_tab_activated: styles.sidebar_tab} onClick={()=>{
+                        router.push("/traininglogsadmin");
+                    }}>
+                        <Image src={all_training_icon} width={20} height={20} className={(selected === "traininglogsadmin")? styles.sidebar_icon_selected :styles.sidebar_icon}/>
                         <p>All training</p>
                     </div>
                     <div className={styles.sidebar_tab}>

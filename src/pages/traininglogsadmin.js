@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 export default function TrainingLogPage() {
     const {userId, admin, username, login, logout} = useAuth();
     const [currentSearch,setCurrentSearch] = useState("");
+    const [selected,setSelected] = useState("traininglogsadmin");
     console.log(userId);
     const router = useRouter();
     useEffect(()=>{
@@ -53,7 +54,7 @@ export default function TrainingLogPage() {
         <div>
             <SearchBar setCurrentSearch={setCurrentSearch}/>
         <div className={styles.mainPage}>
-            <Sidebar /> 
+            <Sidebar selected={selected} setSelected={setSelected}/>
             {/* Need to find a way to add conditional coloring to the sidebar. */}
             
             <div className={styles.trainingStuff}>

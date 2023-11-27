@@ -13,7 +13,7 @@ export default function AnimalsPage() {
     const [currentSearch,setCurrentSearch] = useState("");
     //Use currentSearch as the state for your filter, it already takes input from the search bar.
     // const [loading, setLoading] = useState(false)
-
+    const [selected,setSelected] = useState("animals");
     async function getData() {
         const response = await fetch("/api/admin/animals")
         const data = await response.json()
@@ -31,7 +31,7 @@ export default function AnimalsPage() {
             <SearchBar setCurrentSearch={setCurrentSearch}/>
     <div className={styles.animalsPage}>
         
-        <Sidebar></Sidebar>
+        <Sidebar selected={selected} setSelected={setSelected}/>
         <div className={styles.animalContent}>
             <div className = {styles.headerBox}>
                 <div className={styles.header}>

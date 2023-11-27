@@ -17,6 +17,7 @@ import { useRouter } from 'next/router';
 export default function TrainingLogPage() {
     const {userId, admin, username, login, logout} = useAuth();
     const [currentSearch,setCurrentSearch] = useState("");
+    const [selected,setSelected] = useState("traininglogs");
     console.log(userId);
     const router = useRouter();
     useEffect(()=>{
@@ -25,9 +26,6 @@ export default function TrainingLogPage() {
             //Reroute back to login page.
             router.push("/login");
             
-        }
-        if (admin === true) {
-            router.push("/traininglogsadmin"); //Temporary code for testing
         }
 
     },[]);
@@ -53,7 +51,7 @@ export default function TrainingLogPage() {
         <div>
             <SearchBar setCurrentSearch={setCurrentSearch}/>
         <div className={styles.mainPage}>
-            <Sidebar />
+            <Sidebar selected={selected} setSelected={setSelected}/>
             
             
             <div className={styles.trainingStuff}>
