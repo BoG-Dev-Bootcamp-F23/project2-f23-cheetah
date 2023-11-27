@@ -11,14 +11,21 @@ export default async function createUser(data) {
     }
 
     try {
-        data.password = await bcrypt.hash(data.password,SALT_COUNT); //10 is the number of saltrounds.
-        const user = new User(data);
-        await user.save();
-        return user;
-    } catch (e) {
+        const exists = await User.exists({email: data['email']})
+        if (exists === null) {
+            data.password = await bcrypt.hash(data.password,SALT_COUNT); //10 is the number of saltrounds.
+            const user = new User(data);
+            await user.save();
+            return user;
+        } else {
+            throw new UserError("Email already exists")
+        }
         
+    } catch (e) {
         if (e._message === "User validation failed" | e.name === "CastError") {
             throw new UserError("Invalid/insufficient information")
+        } else if (e.message === "Email already exists") {
+            throw new UserError("Email already exists")
         } else {
             throw new ServerError("Server Failure")
         }

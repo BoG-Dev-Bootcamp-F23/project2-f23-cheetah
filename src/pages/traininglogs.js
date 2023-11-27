@@ -1,5 +1,5 @@
-import Sidebar from '../components/Sidebar'
-import useId from '../hooks/useAuth'
+import Sidebar from '@/components/Sidebar'
+import { useAuth } from '@/hooks/useAuth'
 import TrainingLogDisplay from '@/components/TrainingLogDisplay';
 import styles from "@/styles/TrainingPage.module.css";
 import {useState, useEffect} from "react";
@@ -13,7 +13,6 @@ import useDebounce from "@/hooks/useDebounce";
 export default function TrainingLogPage() {
     const [create,setCreate] = useState(false);
     const [edit,setEdit] = useState(false);
-    const {id, login, logout, admin} = useId();
     const [logList,setLogList] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
     useEffect(() => {

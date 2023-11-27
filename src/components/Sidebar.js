@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import useAuth from '@/hooks/useAuth'
+import { useAuth } from '@/hooks/useAuth'
+import Link from 'next/link'
 import styles from '@/styles/Sidebar.module.css'
 import Image from 'next/image'
 import all_animals_icon from '@/images/all_animals_icon.png'
@@ -10,9 +11,9 @@ import training_logs_icon from '@/images/training_logs_icon.png'
 import training_logs_icon_white from '@/images/training_logs_icon_white.png'
 import logout_icon from '@/images/logout.png'
 
+
 export default function Sidebar() {
-    const { id, login, logout, admin, userName } = useAuth();
-    
+    const {userId, admin, username, login, logout} = useAuth();
 
     return (
         <div>
@@ -45,14 +46,17 @@ export default function Sidebar() {
                 <div className={styles.user_info_container}>
                     <div className={styles.user_info_left}>
                         <div className={styles.user_logo}>
-                            <b className={styles.first_letter}>{userName.charAt(0).toUpperCase()}</b>
+                            <b className={styles.first_letter}>{username?.charAt(0).toUpperCase()}</b>
                         </div>
                         <div>
-                            <p className={styles.user_name}><b>{userName}</b></p>
+                            <p className={styles.user_name}><b>{username}</b></p>
                             {admin? <p className={styles.user_identifier}>Admin</p>: <p>User</p>}
                         </div>
                     </div>
-                    <Image src={logout_icon} width={25} height={25} className={styles.sidebar_icon}/>
+                    <Link href='../'>
+                        <Image src={logout_icon} width={25} height={25} className={styles.sidebar_icon} onClick={logout}/>
+                    </Link>
+                    
                 </div>
             </div>
         </div>
