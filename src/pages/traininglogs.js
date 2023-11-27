@@ -7,13 +7,16 @@ import Image from "next/image";
 import add from "@/images/icon-park-outline_addadd.png";
 import TrainingLogCreation from "@/components/TrainingLogCreation";
 import TrainingLogEdit from "@/components/TrainingLogEdit";
+import SearchBar from '@/components/SearchBar';
 import useDebounce from "@/hooks/useDebounce";
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+
 
 //I will likely need to call the database to get access to animal and user information when displaying the trainingLog.
 
 export default function TrainingLogPage() {
     const {userId, admin, username, login, logout} = useAuth();
+    const [currentSearch,setCurrentSearch] = useState("");
     console.log(userId);
     const router = useRouter();
     useEffect(()=>{
@@ -44,8 +47,12 @@ export default function TrainingLogPage() {
     },[create,debouncedEdit]);
     //Use useId() to do conditional rendering based on whether this user is an admin or not.
     return (
+        <div>
+            <SearchBar setCurrentSearch={setCurrentSearch}/>
         <div className={styles.mainPage}>
             <Sidebar />
+            
+            
             <div className={styles.trainingStuff}>
             
             <div className = {styles.headerBox}>
@@ -65,7 +72,9 @@ export default function TrainingLogPage() {
             {logList.map((logItem) => {
                 console.log(logItem.user);
                 if (admin || logItem.user === userId) {
-                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} />
+                    //Now check and ensure that the search query exists is in a created search query string.
+                    //Let the TrainingLogDisplay decide whether to conditionally render itself or not.
+                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
                 }
                 
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.
@@ -76,6 +85,7 @@ export default function TrainingLogPage() {
             </div>
             
             
+        </div>
         </div>
         
     )

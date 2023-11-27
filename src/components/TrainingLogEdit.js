@@ -7,7 +7,7 @@ import moment from "moment";
 //But can't edit user assosciated with such a training log.
 //Create an ERROR state that shows if it is not "", and shows an error message
 //right above the submit button.
-
+//Currently edit doesn't work when you are an admin.
 
 
 
