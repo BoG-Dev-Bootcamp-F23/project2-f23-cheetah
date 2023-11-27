@@ -2,6 +2,7 @@ import styles from '@/styles/Login.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
+import SearchBar from '@/components/SearchBar';
 
 async function handleClick(fullName, email, password, confirm_password, admin, router, login) {
 
@@ -55,6 +56,7 @@ export default function SignupPage() {
 
     return (
         <div>
+            <SearchBar/>
             <div className = {styles.loginContainer} id = "login_container">
                 <div className={styles.loader} id = "loading_bar">
                     <div className={styles.loader_bar}></div>

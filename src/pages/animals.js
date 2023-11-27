@@ -4,11 +4,14 @@ import Image from "next/image";
 import add from "@/images/icon-park-outline_addadd.png";
 import { useEffect, useState } from "react";
 import Animal from '@/components/Animal';
+import SearchBar from '@/components/SearchBar';
 
 
 export default function AnimalsPage() {
 
     const [animals, setAnimals] = useState(null)
+    const [currentSearch,setCurrentSearch] = useState("");
+    //Use currentSearch as the state for your filter, it already takes input from the search bar.
     // const [loading, setLoading] = useState(false)
 
     async function getData() {
@@ -24,7 +27,10 @@ export default function AnimalsPage() {
     },[])
 
     return ( 
+        <div>
+            <SearchBar setCurrentSearch={setCurrentSearch}/>
     <div className={styles.animalsPage}>
+        
         <Sidebar></Sidebar>
         <div className={styles.animalContent}>
             <div className = {styles.headerBox}>
@@ -41,6 +47,7 @@ export default function AnimalsPage() {
                 })}
             </div>
         </div>
+    </div>
     </div>
     )
 }
