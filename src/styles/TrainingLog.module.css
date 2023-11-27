@@ -72,3 +72,8 @@
     background-color: white;
     border-style: none;
 }
+.redpenimage:hover {
+    filter: brightness(0.7);
+    transition: filter ease 150ms;
+
+}
