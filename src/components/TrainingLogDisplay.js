@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 
 
 export default function TrainingLogDisplay(props) {
-    const {setEdit, edit, debouncedEdit, currentSearch} = props;
+    const {setEdit, edit, debouncedEdit, currentSearch, admin} = props;
     const [username,setUsername] = useState("");
     const [animalBreed,setAnimalBreed] = useState("");
     const [animalName,setAnimalName] = useState(""); 
@@ -64,11 +64,14 @@ export default function TrainingLogDisplay(props) {
                 <div>{props.description}</div>
             </div>
             </div>
-        <button onClick={()=>{
+        {admin ? <></>: <button onClick={()=>{
             setEdit(props);
         }}className={styles.redpen}>
         <Image src={redpen} alt="" width="50"/>
-        </button>
+        </button>}
+        
+
+
         </div>
         </>);
         }else {

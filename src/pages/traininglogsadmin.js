@@ -26,8 +26,8 @@ export default function TrainingLogPage() {
             router.push("/login");
             
         }
-        if (admin === true) {
-            router.push("/traininglogsadmin"); //Temporary code for testing
+        if (admin === false) {
+            router.push("/traininglogs");
         }
 
     },[]);
@@ -53,16 +53,16 @@ export default function TrainingLogPage() {
         <div>
             <SearchBar setCurrentSearch={setCurrentSearch}/>
         <div className={styles.mainPage}>
-            <Sidebar />
-            
+            <Sidebar /> 
+            {/* Need to find a way to add conditional coloring to the sidebar. */}
             
             <div className={styles.trainingStuff}>
             
             <div className = {styles.headerBox}>
             <div className={styles.header}>
 
-                <span>Training Logs</span>
-                {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
+                <span>All Training Logs</span>
+                {((create || edit) || admin) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
                     <Image src={add} alt="" width="15"/>
                     Create new</button>}
                 
@@ -74,10 +74,10 @@ export default function TrainingLogPage() {
             {(create || edit) ? <></> : <div>
             {logList.map((logItem) => {
                 console.log(logItem.user);
-                if (logItem.user === userId) {
+                if (admin || logItem.user === userId) {
                     //Now check and ensure that the search query exists is in a created search query string.
                     //Let the TrainingLogDisplay decide whether to conditionally render itself or not.
-                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} admin={admin}/>
                 }
                 
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.
