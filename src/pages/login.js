@@ -31,7 +31,7 @@ async function handleClick(email, password, router, login) {
         } else {
             document.getElementById("error_message").style.display = 'none'
             login(res.message)
-            router.push('./traininglogs')
+            router.push('./traininglogs');
         }  
     } catch (e) {
         console.log("error: ", e)

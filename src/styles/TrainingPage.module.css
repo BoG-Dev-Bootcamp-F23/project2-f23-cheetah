@@ -37,6 +37,6 @@
     align-items: center;
     justify-content: space-around;
     border-style: none;
-
-    width: 15%;
+    background-color: white;
+    width: 100px;
 }
