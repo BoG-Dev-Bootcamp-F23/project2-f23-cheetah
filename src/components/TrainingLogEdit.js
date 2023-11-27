@@ -13,6 +13,7 @@ import moment from "moment";
 
 export default function TrainingLogEdit(props) {
     let {setEdit, edit} = props;
+    const user = props.userId;
     //Temporary current user id.
     //Deconstruct day value here.
     console.log(edit);
@@ -20,7 +21,7 @@ export default function TrainingLogEdit(props) {
     const year = moment(edit.date).format("YYYY");
     const month = moment(edit.date).format("MM") - 1;
     
-    const user = "655712cf04789adf1b86d592";
+    
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState(" ");
     async function saveLog(title,animal,hours,month,day,year,note) {

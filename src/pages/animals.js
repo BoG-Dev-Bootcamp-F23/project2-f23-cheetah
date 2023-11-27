@@ -23,7 +23,7 @@ export default function AnimalsPage() {
         getData()
     },[])
 
-    return (
+    return ( 
     <div className={styles.animalsPage}>
         <Sidebar></Sidebar>
         <div className={styles.animalContent}>

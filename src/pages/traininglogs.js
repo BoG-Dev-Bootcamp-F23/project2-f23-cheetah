@@ -8,9 +8,25 @@ import add from "@/images/icon-park-outline_addadd.png";
 import TrainingLogCreation from "@/components/TrainingLogCreation";
 import TrainingLogEdit from "@/components/TrainingLogEdit";
 import useDebounce from "@/hooks/useDebounce";
+import { useRouter } from 'next/router'
+
 //I will likely need to call the database to get access to animal and user information when displaying the trainingLog.
 
 export default function TrainingLogPage() {
+    const {userId, admin, username, login, logout} = useAuth();
+    console.log(userId);
+    const router = useRouter();
+    useEffect(()=>{
+        if (userId === null) {
+        
+            //Reroute back to login page.
+            router.push("/login");
+            
+        }
+
+    },[]);
+    
+     
     const [create,setCreate] = useState(false);
     const [edit,setEdit] = useState(false);
     const [logList,setLogList] = useState([]);
@@ -43,13 +59,17 @@ export default function TrainingLogPage() {
                
             </div>
             </div>
-            {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit}/>: <></>}
-            {create ? <TrainingLogCreation setCreate={setCreate}/> : <></>}
+            {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
+            {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div>
-            {logList.map((logItem) => (
-                <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} />
+            {logList.map((logItem) => {
+                console.log(logItem.user);
+                if (admin || logItem.user === userId) {
+                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} />
+                }
+                
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.
-            ))}
+            })}
             </div>}
             
             

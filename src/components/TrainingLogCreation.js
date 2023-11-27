@@ -13,9 +13,9 @@ import moment from "moment";
 
 export default function TrainingLogCreation(props) {
     const {setCreate} = props;
-    
+    const user = props.userId;
     //Temporary current user id.
-    const user = "655712cf04789adf1b86d592";
+    ;
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState(" ");
    
@@ -37,10 +37,10 @@ export default function TrainingLogCreation(props) {
             return;
         }
         let date = myMoment.toISOString();
-        console.log(date);
+       
         const URL = `/api/training`;
 
-        console.log(title,animal,hours,month,day,year,note);
+       
         const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours};
         await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
@@ -56,12 +56,12 @@ export default function TrainingLogCreation(props) {
         async function createAnimalSelections(user) {
             
             const URL = `/api/animalsforuser?user=${user}`;
-           
+          
             const response = await fetch(URL);
             
             const animals = await response.json();
             const animalSelectionsList = [];
-           
+       
             animals.forEach((animal)=> {
                 animalSelectionsList.push([animal._id,animal.name,animal.breed]);
             });
@@ -71,7 +71,7 @@ export default function TrainingLogCreation(props) {
         }
         
         createAnimalSelections(user);
-        console.log(animalSelections);
+        
     },[]);
 
     return <div className={styles.form}>
