@@ -18,7 +18,6 @@ export default function TrainingLogPage() {
     const {userId, admin, username, login, logout} = useAuth();
     const [currentSearch,setCurrentSearch] = useState("");
     const [selected,setSelected] = useState("traininglogs");
-    console.log(userId);
     const router = useRouter();
     useEffect(()=>{
         if (userId === null) {
@@ -50,44 +49,33 @@ export default function TrainingLogPage() {
     return (
         <div>
             <SearchBar setCurrentSearch={setCurrentSearch}/>
-        <div className={styles.mainPage}>
-            <Sidebar selected={selected} setSelected={setSelected}/>
+            <div className={styles.mainPage}>
+                <Sidebar selected={selected} setSelected={setSelected}/>
             
-            
-            <div className={styles.trainingStuff}>
-            
-            <div className = {styles.headerBox}>
-            <div className={styles.header}>
-
-                <span>Training Logs</span>
-                {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
-                    <Image src={add} alt="" width="15"/>
-                    <span className={styles.text}>Create new</span></button>}
-                
-               
+                <div className={styles.trainingStuff}>
+                    <div className = {styles.headerBox}>
+                        <div className={styles.header}>
+                            <span>Training Logs</span>
+                            {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
+                            <Image src={add} alt="" width="15"/>
+                            <span className={styles.text}>Create new</span></button>}
+                        </div>
+                    </div>
+                    {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
+                    {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
+                    {(create || edit) ? <></> : <div className={styles.trainingList}>
+                        {logList.map((logItem) => {
+                            console.log(logItem.user);
+                            if (logItem.user === userId) {
+                                //Now check and ensure that the search query exists is in a created search query string.
+                                //Let the TrainingLogDisplay decide whether to conditionally render itself or not.
+                                return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                            }
+                        //Key prop provides react with a unique identifier for each object, making it easier for it to render.
+                        })}
+                    </div>}
+                </div>
             </div>
-            </div>
-            {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
-            {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
-            {(create || edit) ? <></> : <div className={styles.trainingList}>
-            {logList.map((logItem) => {
-                console.log(logItem.user);
-                if (logItem.user === userId) {
-                    //Now check and ensure that the search query exists is in a created search query string.
-                    //Let the TrainingLogDisplay decide whether to conditionally render itself or not.
-                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
-                }
-                
-                //Key prop provides react with a unique identifier for each object, making it easier for it to render.
-            })}
-            </div>}
-            
-            
-            </div>
-            
-            
         </div>
-        </div>
-        
     )
 }

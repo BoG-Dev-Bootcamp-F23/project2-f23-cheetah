@@ -1,11 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
 .mainPage {
     display: flex;
     flex-direction: row;
-    font-family: "Heebo";
     color: #7C7171;
     overflow: hidden;
-
 }
 
 .contentType {
@@ -19,41 +16,4 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-left: 10px;
-}
-.headerBox {
-    border-bottom: solid;
-    padding: 0px;
-}
-.header {
-
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    margin-top: 30px;
-    font-size: 15px;
-    width: 90%;
-    font-weight: bold;
-
-}
-.create {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-style: none;
-    background-color: white;
-    border-radius: 5px;
-    width: 100px;
-    font-family: "Heebo";
-    padding: 5px;
-}
-.create:hover {
-    background-color: #dcdcdc; 
-  transition: background-color ease 150ms;
-}
-.text {
-    font-family: "Heebo";
-    color: #7C7171;
-    font-weight: bold;
-
 }
