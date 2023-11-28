@@ -7,9 +7,10 @@ import TrainingLogDisplay from '@/components/TrainingLogDisplay';
 import TrainingLogCreation from "@/components/TrainingLogCreation";
 import TrainingLogEdit from "@/components/TrainingLogEdit";
 
-export default function AllTrainingLogs() {
+export default function AllTrainingLogs(props) {
     const {userId, admin, username, login, logout} = useAuth();
-    const [ currentSearch, setCurrentSearch ] = useState("");
+    //const [ currentSearch, setCurrentSearch ] = useState("");
+    const {currentSearch,setCurrentSearch} = props;
     const [ create, setCreate ] = useState(false);
     const [ edit, setEdit ] = useState(false);
     const [ logList, setLogList ] = useState([]);

@@ -30,7 +30,9 @@ export default function TrainingLogDisplay(props) {
         getInfo(props.user,props.animal)},[debouncedEdit]);
     const day = moment(props.date).format("D");
     const monthAndYear = moment(props.date).format("MMM - YYYY");
-    let checkString = `${props.title}${props.description}${props.hours}${day}${monthAndYear}${animalBreed}${animalName}${username}`;
+    //Used to make it sort by all fields, now it just sorts by Title.
+    //let checkString = `${props.title}${props.description}${props.hours}${day}${monthAndYear}${animalBreed}${animalName}${username}`;
+    let checkString = props.title;
     checkString = checkString.toLowerCase();
     console.log("Current Search",currentSearch);
     console.log("CheckString",checkString);

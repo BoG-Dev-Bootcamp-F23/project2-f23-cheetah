@@ -7,9 +7,10 @@ import styles from "@/styles/TrainingPage.module.css";
 import { useState, useEffect } from "react";
 import useDebounce from "@/hooks/useDebounce";
 
-export default function TrainingLogs() {
+export default function TrainingLogs(props) {
     const { userId, admin, username, login, logout } = useAuth();
-    const [ currentSearch, setCurrentSearch ] = useState("");
+    //const [ currentSearch, setCurrentSearch ] = useState("");
+    const {currentSearch, setCurrentSearch} = props;
     const [ create, setCreate ] = useState(false);
     const [ edit, setEdit ] = useState(false);
     const [ logList, setLogList ] = useState([]);

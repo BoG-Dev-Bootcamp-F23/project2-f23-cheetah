@@ -22,9 +22,9 @@ export default function Dashboard() {
         if (selected === "usersadmin") {
             return <AllUsers />
         } else if (selected === "traininglogs") {
-            return <TrainingLogs />
+            return <TrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
         } else if (selected === "traininglogsadmin") {
-            return <AllTrainingLogs />
+            return <AllTrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch}/>
         } else {
             return <div>to do</div>
         }
