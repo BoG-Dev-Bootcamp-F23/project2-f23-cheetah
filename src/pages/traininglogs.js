@@ -69,7 +69,7 @@ export default function TrainingLogPage() {
             </div>
             {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
             {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
-            {(create || edit) ? <></> : <div>
+            {(create || edit) ? <></> : <div className={styles.trainingList}>
             {logList.map((logItem) => {
                 console.log(logItem.user);
                 if (logItem.user === userId) {

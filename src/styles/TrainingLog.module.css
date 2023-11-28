@@ -17,6 +17,7 @@
     border-radius: 10px;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     
 }
 
@@ -71,6 +72,7 @@
     padding-left: 120px;
     background-color: white;
     border-style: none;
+    margin-right: 8px;
 }
 .redpenimage:hover {
     filter: brightness(0.7);

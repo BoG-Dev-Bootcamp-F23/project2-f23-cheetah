@@ -14,9 +14,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid;
-    border-color: gray;
+
     padding: 5px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+    height: 55px;
 }
 
 .input:focus {
