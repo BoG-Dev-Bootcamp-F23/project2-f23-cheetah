@@ -5,28 +5,46 @@
     flex-direction: row;
     font-family: "Heebo";
     color: #7C7171;
+    width: 75%;
 }
 
 .animalList {
     display: grid;
-    grid-template-columns: 34% 34% 34%;
-    margin-left: 30px;
-    margin-top: 50px;
+    grid-template-columns: 30% 30% 30% ;
+    margin-left: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .animalContent {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100%; 
     margin-left: 10px;
+    
+}
+.animalInfo {
+    font-weight: bold;
+    color: black;
+    font-family: "Heebo";
+    
 }
 
 .animal {
-    margin-bottom: 40px;
+    margin-bottom: 0px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(0.75);
+    margin-right: 20px;
+    width: 349px;
+    border-radius: 15px;
+    
 }
 
 .info {
     display: flex;
     flex-direction: row;
+    border-radius: 10px;
+    
+    
 }
 
 .contentType {
@@ -55,6 +73,7 @@
 }
 
 .user_logo {
+    margin-left: 5px;
     background-color: #d21312;
     border-radius: 50%;
     width: 40px;
@@ -67,4 +86,8 @@
 }
 .first_letter {
     font-size: 25px;
+    
+}
+.picture {
+    border-radius: 15px 15px 0px 0px;
 }
