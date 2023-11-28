@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useContext } from 'react'
+import SearchBar from '@/components/SearchBar';
 
 async function handleClick(email, password, router, login) {
     
@@ -49,6 +50,7 @@ export default function LoginPage() {
 
     return (
         <div>
+            <SearchBar/>
             <div className = {styles.loginContainer} id = "login_container">
                 <div className={styles.loader} id = "loading_bar">
                     <div className={styles.loader_bar}></div>

@@ -4,13 +4,28 @@ import Image from "next/image";
 import add from "@/images/icon-park-outline_addadd.png";
 import { useEffect, useState } from "react";
 import Animal from '@/components/Animal';
+import SearchBar from '@/components/SearchBar';
+import { useAuth } from '@/hooks/useAuth'
+import { useRouter } from 'next/router';
 
 
 export default function AnimalsPage() {
-
+    const {userId, admin, username, login, logout} = useAuth();
     const [animals, setAnimals] = useState(null)
+    const [currentSearch,setCurrentSearch] = useState("");
+    //Use currentSearch as the state for your filter, it already takes input from the search bar.
     // const [loading, setLoading] = useState(false)
+    const router = useRouter();
+    useEffect(()=>{
+        if (userId === null) {
+        
+            //Reroute back to login page.
+            router.push("/login");
+            
+        }
 
+    },[]);
+    const [selected,setSelected] = useState("animals");
     async function getData() {
         const response = await fetch("/api/admin/animals")
         const data = await response.json()
@@ -24,8 +39,10 @@ export default function AnimalsPage() {
     },[])
 
     return ( 
+        <div>
+            <SearchBar setCurrentSearch={setCurrentSearch}/>
     <div className={styles.animalsPage}>
-        <Sidebar />
+        <Sidebar selected={selected} setSelected={setSelected}/>
         <div className={styles.animalContent}>
             <div className = {styles.headerBox}>
                 <div className={styles.header}>
@@ -35,12 +52,13 @@ export default function AnimalsPage() {
                         Create new</span>
                 </div>
             </div>
-            <div className={styles.animalList}>
+            <div className={styles.animalList}> 
                 {animals?.map((animal) => {
                     return <Animal key={animal._id} animal={animal}></Animal>
                 })}
             </div>
         </div>
+    </div>
     </div>
     )
 }

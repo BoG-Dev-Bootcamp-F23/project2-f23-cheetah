@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 export default function TrainingLogPage() {
     const {userId, admin, username, login, logout} = useAuth();
     const [currentSearch,setCurrentSearch] = useState("");
-    const [selected,setSelected] = useState("traininglogs");
+    const [selected,setSelected] = useState("traininglogsadmin");
     console.log(userId);
     const router = useRouter();
     useEffect(()=>{
@@ -26,6 +26,9 @@ export default function TrainingLogPage() {
             //Reroute back to login page.
             router.push("/login");
             
+        }
+        if (admin === false) {
+            router.push("/traininglogs");
         }
 
     },[]);
@@ -52,17 +55,17 @@ export default function TrainingLogPage() {
             <SearchBar setCurrentSearch={setCurrentSearch}/>
         <div className={styles.mainPage}>
             <Sidebar selected={selected} setSelected={setSelected}/>
-            
+            {/* Need to find a way to add conditional coloring to the sidebar. */}
             
             <div className={styles.trainingStuff}>
             
             <div className = {styles.headerBox}>
             <div className={styles.header}>
 
-                <span>Training Logs</span>
-                {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
+                <span>All Training Logs</span>
+                {((create || edit) || admin) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
                     <Image src={add} alt="" width="15"/>
-                    <span className={styles.text}>Create new</span></button>}
+                    Create new</button>}
                 
                
             </div>
@@ -72,10 +75,10 @@ export default function TrainingLogPage() {
             {(create || edit) ? <></> : <div>
             {logList.map((logItem) => {
                 console.log(logItem.user);
-                if (logItem.user === userId) {
+                if (admin || logItem.user === userId) {
                     //Now check and ensure that the search query exists is in a created search query string.
                     //Let the TrainingLogDisplay decide whether to conditionally render itself or not.
-                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                    return <TrainingLogDisplay key={logItem._id} setEdit={setEdit}edit={edit}{...logItem} debouncedEdit={debouncedEdit} currentSearch={currentSearch} admin={admin}/>
                 }
                 
                 //Key prop provides react with a unique identifier for each object, making it easier for it to render.

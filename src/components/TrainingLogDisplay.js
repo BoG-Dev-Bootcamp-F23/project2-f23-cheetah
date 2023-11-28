@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 
 
 export default function TrainingLogDisplay(props) {
-    const {setEdit, edit, debouncedEdit} = props;
+    const {setEdit, edit, debouncedEdit, currentSearch, admin} = props;
     const [username,setUsername] = useState("");
     const [animalBreed,setAnimalBreed] = useState("");
     const [animalName,setAnimalName] = useState(""); 
@@ -30,38 +30,52 @@ export default function TrainingLogDisplay(props) {
         getInfo(props.user,props.animal)},[debouncedEdit]);
     const day = moment(props.date).format("D");
     const monthAndYear = moment(props.date).format("MMM - YYYY");
+    let checkString = `${props.title}${props.description}${props.hours}${day}${monthAndYear}${animalBreed}${animalName}${username}`;
+    checkString = checkString.toLowerCase();
+    console.log("Current Search",currentSearch);
+    console.log("CheckString",checkString);
 
-    return <>
-    <div className = {styles.log}>
-        <div className={styles.leftContent}>
-        <div className = {styles.dateStuff}>
-            <div className = {styles.day}>
-
-                {day}
-            </div>
-            <div className = {styles.otherDate}>
-                {monthAndYear}
-            </div>
+    if (currentSearch === "" || checkString.includes(currentSearch)) {
             
-        </div>
 
-        <div className = {styles.description}>
-            <div className = {styles.upperDescription}>
-                <div className={styles.title}>{props.title}</div>
-                • {props.hours} hours
+        
+        return (<>
+        <div className = {styles.log}>
+            <div className={styles.leftContent}>
+            <div className = {styles.dateStuff}>
+                <div className = {styles.day}>
+
+                    {day}
+                </div>
+                <div className = {styles.otherDate}>
+                    {monthAndYear}
+                </div>
+                
             </div>
-            <div className = {styles.middleDescription}>
-                {username} - {animalBreed} - {animalName}
+
+            <div className = {styles.description}>
+                <div className = {styles.upperDescription}>
+                    <div className={styles.title}>{props.title}</div>
+                    • {props.hours} hours
+                </div>
+                <div className = {styles.middleDescription}>
+                    {username} - {animalBreed} - {animalName}
+                </div>
+                <div>{props.description}</div>
             </div>
-            <div>{props.description}</div>
+            </div>
+        {admin ? <></>: <button onClick={()=>{
+            setEdit(props);
+        }}className={styles.redpen}>
+        <Image src={redpen} alt="" width="50" className={styles.redpenimage}/>
+        </button>}
+        
+
+
         </div>
-        </div>
-    <button onClick={()=>{
-        setEdit(props);
-    }}className={styles.redpen}>
-    <Image src={redpen} alt="" width="50"/>
-    </button>
-    </div>
-    </>
+        </>);
+        }else {
+            return <></>;
+        }
 
 }

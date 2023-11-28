@@ -10,7 +10,7 @@ export default function Animal(props) {
                 <div className={styles.user_logo}>
                     <b className={styles.first_letter}>{"Test".charAt(0).toUpperCase()}</b>
                 </div>
-                <div className={styles.infoRight}>
+                <div className={styles.inforight}>
                     <div className={styles.animalInfo}>{animal.name} - {animal.breed}</div>
                     <div className={styles.trainingInfo}>Username • Trained: {animal.hoursTrained}</div> {/* Need to find a way to put the users actual name instead of username*/}
                 </div>

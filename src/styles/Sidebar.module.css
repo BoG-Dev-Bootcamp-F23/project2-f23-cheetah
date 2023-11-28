@@ -8,6 +8,10 @@
 .sidebar_icon {
     margin-right: 7px;
 }
+.sidebar_icon_selected {
+    margin-right: 7px;
+    filter: invert(1);
+}
 .user_container {
     display: flex;
     flex-direction: column;
@@ -24,12 +28,19 @@
     align-items: center;
 }
 .sidebar_tab {
+    
     display: flex;
     flex-direction: row;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 5px;
     align-items: center;
+}
+.sidebar_tab:hover {
+    background-color: #dcdcdc;
+    
+    transition: background-color 150ms ease;
+   
 }
 .admin_container {
     border-top: 1px solid gray;
