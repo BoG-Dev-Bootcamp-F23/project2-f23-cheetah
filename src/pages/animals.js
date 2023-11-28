@@ -25,7 +25,7 @@ export default function AnimalsPage() {
 
     return ( 
     <div className={styles.animalsPage}>
-        <Sidebar></Sidebar>
+        <Sidebar />
         <div className={styles.animalContent}>
             <div className = {styles.headerBox}>
                 <div className={styles.header}>
