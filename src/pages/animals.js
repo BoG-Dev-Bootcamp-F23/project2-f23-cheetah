@@ -52,10 +52,12 @@ export default function AnimalsPage() {
                         Create new</span>
                 </div>
             </div>
+            <div className={styles.gridContent}>
             <div className={styles.animalList}> 
                 {animals?.map((animal) => {
                     return <Animal key={animal._id} animal={animal}></Animal>
                 })}
+            </div>
             </div>
         </div>
     </div>

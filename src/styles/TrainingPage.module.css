@@ -1,16 +1,19 @@
 @import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
-
 .mainPage {
     display: flex;
     flex-direction: row;
     font-family: "Heebo";
     color: #7C7171;
-    
+    overflow: hidden;
 
 }
 
 .contentType {
     font-size: 17px;
+}
+.trainingList {
+    overflow-y: auto;
+    height: 82vh;
 }
 .trainingStuff {
     display: flex;

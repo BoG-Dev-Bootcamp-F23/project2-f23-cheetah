@@ -8,7 +8,7 @@ export default function SearchBar(props) {
     //Use conditional rendering based on whether setCurrentSearch is passed in to determine whether search should show or not.
     return <div className={styles.titleBar}>
         <Image src={progress} height="33"/>
-        {setCurrentSearch === undefined ? <></>:
+        {setCurrentSearch === undefined ? <div></div>:
         <div className={styles.search}>
             <Image src={focus} alt="" width="20"/>
         <input type="text" id="search" className = {styles.input} placeholder="Search" onChange={()=>{
@@ -18,7 +18,7 @@ export default function SearchBar(props) {
         }}/>
         
         </div>}
-        <span></span>
+        <span>                                                             </span>
     </div>
 
 }

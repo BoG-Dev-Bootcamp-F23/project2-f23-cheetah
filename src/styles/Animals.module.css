@@ -6,15 +6,19 @@
     font-family: "Heebo";
     color: #7C7171;
     width: 75%;
+   
 }
 
 .animalList {
     display: grid;
     grid-template-columns: 30% 30% 30% ;
     margin-left: 15px;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
+.gridContent {
+    overflow-y: auto; 
+    white-space: nowrap; 
+    height: 80vh;
+  }
 .animalContent {
     display: flex;
     flex-direction: column;
