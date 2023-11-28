@@ -2,6 +2,7 @@ import Sidebar from '@/components/Sidebar'
 import SearchBar from '@/components/SearchBar';
 import AllUsers from '@/components/AllUsers';
 import TrainingLogs from "@/components/TrainingLogs";
+import AllTrainingLogs from '@/components/AllTrainingLogs';
 import Header from '@/components/Header';
 import { useEffect, useState } from "react";
 import styles from "@/styles/Dashboard.module.css";
@@ -22,6 +23,8 @@ export default function Dashboard() {
             return <AllUsers />
         } else if (selected === "traininglogs") {
             return <TrainingLogs />
+        } else if (selected === "traininglogsadmin") {
+            return <AllTrainingLogs />
         } else {
             return <div>to do</div>
         }
