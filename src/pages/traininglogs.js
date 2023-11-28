@@ -62,7 +62,7 @@ export default function TrainingLogPage() {
                 <span>Training Logs</span>
                 {(create || edit) ? <></>: <button className={styles.create} onClick={()=>{setCreate(true)}}>
                     <Image src={add} alt="" width="15"/>
-                    Create new</button>}
+                    <span className={styles.text}>Create new</span></button>}
                 
                
             </div>

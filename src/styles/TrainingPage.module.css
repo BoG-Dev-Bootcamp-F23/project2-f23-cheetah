@@ -20,6 +20,7 @@
 }
 .headerBox {
     border-bottom: solid;
+    padding: 0px;
 }
 .header {
 
@@ -38,5 +39,18 @@
     justify-content: space-around;
     border-style: none;
     background-color: white;
+    border-radius: 5px;
     width: 100px;
+    font-family: "Heebo";
+    padding: 5px;
+}
+.create:hover {
+    background-color: #dcdcdc; 
+  transition: background-color ease 150ms;
+}
+.text {
+    font-family: "Heebo";
+    color: #7C7171;
+    font-weight: bold;
+
 }

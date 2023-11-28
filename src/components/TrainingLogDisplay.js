@@ -67,7 +67,7 @@ export default function TrainingLogDisplay(props) {
         {admin ? <></>: <button onClick={()=>{
             setEdit(props);
         }}className={styles.redpen}>
-        <Image src={redpen} alt="" width="50"/>
+        <Image src={redpen} alt="" width="50" className={styles.redpenimage}/>
         </button>}
         
 
