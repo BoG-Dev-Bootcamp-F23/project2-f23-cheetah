@@ -42,7 +42,6 @@ export default function AnimalsPage() {
         <div>
             <SearchBar setCurrentSearch={setCurrentSearch}/>
     <div className={styles.animalsPage}>
-        
         <Sidebar selected={selected} setSelected={setSelected}/>
         <div className={styles.animalContent}>
             <div className = {styles.headerBox}>

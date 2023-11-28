@@ -23,6 +23,7 @@ async function handleClick(email, password, router, login) {
                 password: password
             })
         });
+
         const res = await response.json();
         loading_bar.style.display = 'none'
         loginContainer.style.opacity = 1
@@ -35,6 +36,10 @@ async function handleClick(email, password, router, login) {
             router.push('./traininglogs');
         }  
     } catch (e) {
+        const loginContainer = document.getElementById("login_container")
+        const loading_bar = document.getElementById("loading_bar")
+        loading_bar.style.display = 'none'
+        loginContainer.style.opacity = 1
         console.log("error: ", e)
     } 
 }
