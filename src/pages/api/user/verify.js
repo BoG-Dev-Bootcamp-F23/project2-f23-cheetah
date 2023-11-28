@@ -10,24 +10,25 @@ export default async function handler(req, res) {
             const body = req.body;
             const ret = await verifyUser(body);
 
-            const { userId, username, email, password, admin } = ret;
+            // const { userId, username, email, password, admin } = ret;
 
-            const secret = process.env.JWT_SECRET || ""
-            const token = jwt.sign({ userId, }, secret, { expiresIn: MAX_AGE, })
-            const serialized = serialize("OurSiteJWT", token, {
-                httpOnly: true,
-                secure: true,
-                sameSite: "strict",
-                maxAge: MAX_AGE,
-                path: "/"
-            })
+            // const secret = process.env.JWT_SECRET || ""
+            // const token = jwt.sign({ userId, }, secret, { expiresIn: MAX_AGE, })
+            // const serialized = serialize("OurSiteJWT", token, {
+            //     httpOnly: true,
+            //     secure: true,
+            //     sameSite: "strict",
+            //     maxAge: MAX_AGE,
+            //     path: "/"
+            // })
 
-            const response = {
-                message: "Authenticated"
-            }
+            // const response = {
+            //     message: "Authenticated"
+            // }
 
-            res.setHeader('Set-Cookie', serialized)
-            return res.status(200).json(response)
+            // res.setHeader('Set-Cookie', serialized)
+            return res.status(200).json({success: true, message: ret})
+            // return res.status(200).json(response)
 
         } catch (e) {
             return res.status(e.statusCode).json({success: false, message: e.message})
