@@ -16,6 +16,7 @@ export default function TrainingLogEdit(props) {
     const user = props.userId;
     //Temporary current user id.
     //Deconstruct day value here.
+    console.log(edit);
     const day = moment(edit.date).format("D");
     const year = moment(edit.date).format("YYYY");
     const month = moment(edit.date).format("MM") - 1;
@@ -46,6 +47,7 @@ export default function TrainingLogEdit(props) {
 
         
         const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours,identifier:edit._id};
+        console.log(data);
         await fetch(URL,{method: "PATCH",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage(" ");
@@ -91,15 +93,14 @@ export default function TrainingLogEdit(props) {
     },[]);
 
     return <>
-            <div className={styles.form}>
-            <label className={styles.button}>
+            <label>
                 Title
             <input type="text" id="title" defaultValue={edit.title}className = {styles.input} placeholder="Title" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
-            <label className={styles.button}>
+            <label>
                 Select Animal
-                <select id="animal" className={styles.input}>
+                <select id="animal">
                     {/* Instead of using a default value I can ensure the first value displayed is the one I want. I */}
                     {animalSelections.map((animal) => {
                         
@@ -110,14 +111,13 @@ export default function TrainingLogEdit(props) {
                 </select>
                 
             </label>
-            <label className={styles.button}>
+            <label>
                 Total Hours Trained
             <input type="number" id="hours" defaultValue={edit.hours} className = {styles.input} placeholder="Hours" min="0" />
             </label>
-            <div className={styles.date}>
-            <label className={styles.button}>
+            <label>
                 Month
-            <select id="month"name="month" defaultValue={month} className = {styles.input}>
+            <select id="month"name="month" defaultValue={month}>
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -133,26 +133,22 @@ export default function TrainingLogEdit(props) {
 
             </select>
             </label>
-            <label className={styles.button}>
+            <label>
                 Day
-                <input type="number" id="day" className = {styles.input} defaultValue={day} placeholder="Day" min="0"/>
+                <input type="number" id="day" defaultValue={day} placeholder="Day" min="0"/>
             </label>
-            <label className={styles.button}>
+            <label>
                 Year
-                <input type="number" id="year" className = {styles.input} defaultValue={year}placeholder="Year" min="0"/>
+                <input type="number" id="year" defaultValue={year}placeholder="Year" min="0"/>
             </label>
-            </div>
-            <label className={styles.button}>
+            <label>
                 Note
-            <textarea type="text" id="note" className = {styles.note} defaultValue={edit.description} placeholder="Note" />
+            <input type="text" id="note" defaultValue={edit.description} className = {styles.input} placeholder="Note" />
             </label>
             <div>
             {errorMessage}
             </div>
-            
-            <div className={styles.buttons} id="save">
-            <button onClick={cancel} className={styles.cancelButton}>Cancel</button>
-            <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
+            <button onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("month")?.value,
@@ -161,10 +157,8 @@ export default function TrainingLogEdit(props) {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
-            
-            <button onClick={deleteLog} className={styles.input}>Delete</button>
-            </div>
-            </div>
+            <button onClick={cancel}>Cancel</button>
+            <button onClick={deleteLog}>Delete</button>
     
         </>
 

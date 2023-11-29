@@ -130,6 +130,7 @@ export default function TrainingLogCreation(props) {
             {errorMessage}
             </div>
             <div className={styles.buttons} id="save">
+            <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
             <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
@@ -139,7 +140,6 @@ export default function TrainingLogCreation(props) {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
-            <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
             </div>
         </div>
 
