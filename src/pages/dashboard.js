@@ -18,14 +18,13 @@ export default function Dashboard() {
     const [ edit, setEdit ] = useState(false);
     const router = useRouter();
     const {userId, admin, username, login, logout} = useAuth();
-
     function display() {
         if (selected === "usersadmin") {
             return <AllUsers />
         } else if (selected === "traininglogs") {
-            return <TrainingLogs />
+            return <TrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch} create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
         } else if (selected === "traininglogsadmin") {
-            return <AllTrainingLogs />
+            return <AllTrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch} create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
         } else if (selected === "animals") {
             return <Animals />
         } else {

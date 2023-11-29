@@ -7,11 +7,10 @@ import styles from "@/styles/TrainingPage.module.css";
 import { useState, useEffect } from "react";
 import useDebounce from "@/hooks/useDebounce";
 
-export default function TrainingLogs() {
+export default function TrainingLogs(props) {
     const { userId, admin, username, login, logout } = useAuth();
-    const [ currentSearch, setCurrentSearch ] = useState("");
-    const [ create, setCreate ] = useState(false);
-    const [ edit, setEdit ] = useState(false);
+    //const [ currentSearch, setCurrentSearch ] = useState("");
+    const {currentSearch, setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [ logList, setLogList ] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
     useEffect(() => {
@@ -27,7 +26,7 @@ export default function TrainingLogs() {
 
     return (
         <div className={styles.trainingStuff}>
-            <Header title="Training Logs" createFeature={true} setEdit={setEdit} setCreate={setCreate}/>
+            <Header title="Training Logs" createFeature={!create && !edit} setEdit={setEdit} setCreate={setCreate}/>
             {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
             {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.trainingList}>
