@@ -20,6 +20,7 @@ export default function AnimalCreation(props) {
     const [errorMessage,setErrorMessage] = useState(" ");
    
     async function saveLog(name, breed, hours, profilePicture) {
+        console.log("Saved log???");
         if (name === "" || breed === "" || hours === "" || profilePicture === "") {
             setErrorMessage("One or more entries is empty.");
             return;
@@ -33,7 +34,9 @@ export default function AnimalCreation(props) {
 
        
         const data = {name:name, breed:breed, owner:user, hoursTrained:hours, profilePicture: profilePicture};
+        console.log(data);
         await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
+        console.log("Posted to database");
         setErrorMessage(" ");
         setCreate(false);
         //Create animal selection criteria
@@ -86,7 +89,9 @@ export default function AnimalCreation(props) {
             {errorMessage}
             </div>
             <div className={styles.buttons} id="save">
-            <button className={styles.input} onClick={() => {saveLog(document.getElementById("name")?.value,
+            <button className={styles.input} onClick={() => {
+            console.log("Name: ",document.getElementById("name")?.value);
+            saveLog(document.getElementById("name")?.value,
             document.getElementById("breed")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("profilePicture")?.value)

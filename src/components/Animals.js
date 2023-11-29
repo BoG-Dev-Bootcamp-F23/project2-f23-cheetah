@@ -8,7 +8,7 @@ import useDebounce from "@/hooks/useDebounce";
 
 
 
-export default function Animals() {
+export default function Animals(props) {
     const {userId, admin, username, login, logout} = useAuth();
     const {currentSearch, setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [animals,setAnimals] = useState([]);
