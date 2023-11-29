@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Animal from '@/components/AnimalDisplay';
 import Header from "@/components/Header";
 import AnimalCreation from "@/components/AnimalCreation";
-// import AnimalEdit from "@/components/AnimalEdit";
 import useDebounce from "@/hooks/useDebounce";
 
 

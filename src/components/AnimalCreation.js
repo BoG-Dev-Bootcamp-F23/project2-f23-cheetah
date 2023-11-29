@@ -20,7 +20,6 @@ export default function AnimalCreation(props) {
     const [errorMessage,setErrorMessage] = useState(" ");
    
     async function saveLog(name, breed, hours, profilePicture) {
-        //Below ensures all input boxes are ch
         if (name === "" || breed === "" || hours === "" || profilePicture === "") {
             setErrorMessage("One or more entries is empty.");
             return;
@@ -89,8 +88,9 @@ export default function AnimalCreation(props) {
             <div className={styles.buttons} id="save">
             <button className={styles.input} onClick={() => {saveLog(document.getElementById("name")?.value,
             document.getElementById("breed")?.value,
-            document.getElementById("hours")?.value,)
-            
+            document.getElementById("hours")?.value,
+            document.getElementById("profilePicture")?.value)
+        
             }}>Save</button>
             <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
             </div>
