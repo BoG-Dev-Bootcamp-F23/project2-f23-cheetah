@@ -1,81 +1,33 @@
-@import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
-
-.animalsPage {
-    display: flex;
-    flex-direction: row;
-    font-family: "Heebo";
-    color: #7C7171;
-    width: 75%;
-   
-}
-
-.animalList {
-    display: grid;
-    grid-template-columns: 30% 30% 30% ;
-    margin-left: 15px;
-}
-.gridContent {
-    overflow-y: auto; 
-    white-space: nowrap; 
-    height: 80vh;
-  }
-.animalContent {
+.animal_container {
     display: flex;
     flex-direction: column;
-    width: 100%; 
-    margin-left: 10px;
-    
+    width: 100%;
+}
+.animal_card_container {
+    display: inline;
+    padding: 20px;
 }
 .animalInfo {
     font-weight: bold;
-    color: black;
-    font-family: "Heebo";
-    
 }
-
 .animal {
-    margin-bottom: 0px;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
-    transform: scale(0.75);
+    float: left;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-right: 20px;
-    width: 349px;
-    border-radius: 15px;
+    width: 350px;
+    border-radius: 10px;
     
 }
-
 .info {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
-    
-    
-}
-
-.contentType {
-    font-size: 17px;
-}
-
-.headerBox {
-    border-bottom: solid;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
-    margin-top: 30px;
-    font-size: 15px;
-    width: 90%;
-    font-weight: bold;
-}
-
-.create {
-    display: flex;
+    padding: 10px;
     align-items: center;
-    justify-content: space-around;
-    width: 15%;
 }
-
 .user_logo {
     margin-left: 5px;
     background-color: #d21312;
@@ -90,8 +42,7 @@
 }
 .first_letter {
     font-size: 25px;
-    
 }
 .picture {
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
 }
