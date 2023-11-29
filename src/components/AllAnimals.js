@@ -34,9 +34,8 @@ export default function Animals(props) {
             {create ? <AnimalCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.animalList}>
             {animals.map((animal) => {
-                if (admin || animal.owner === userId) {
                     return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} admin={admin}/>
-                }
+                
             })}
             </div>}
             
