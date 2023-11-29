@@ -3,6 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
 import SearchBar from '@/components/SearchBar';
+import Image from 'next/image'
+import ellipse from "@/images/ellipse.png";
 
 async function handleClick(fullName, email, password, confirm_password, admin, router, login) {
 
@@ -84,7 +86,9 @@ export default function SignupPage() {
                     )
                 }}>Sign up</button>
                 <Link href="/login" className={styles.link}><p>Already have an account? <b>Sign in</b></p></Link>
+                <Image className={styles.ellipse} src={ellipse}/>
             </div>
+
         </div>
     )
 }
