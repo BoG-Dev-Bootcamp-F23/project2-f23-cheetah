@@ -18,6 +18,7 @@ export default function Dashboard() {
     const [ edit, setEdit ] = useState(false);
     const router = useRouter();
     const {userId, admin, username, login, logout} = useAuth();
+    
     function display() {
         if (selected === "usersadmin") {
             return <AllUsers />

@@ -3,7 +3,6 @@ import styles from "@/styles/Header.module.css"
 import add from "@/images/icon-park-outline_addadd.png";
 
 export default function Header(props) {
-    console.log("Create:",props.createFeature);
     return (
         <div className = {styles.headerBox}>
             <div className={styles.header}>
