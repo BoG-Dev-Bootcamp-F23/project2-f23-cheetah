@@ -1,32 +1,54 @@
-import Animal from '@/components/Animal';
+import { useAuth } from '@/hooks/useAuth'
+import styles from "@/styles/AnimalPage.module.css";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Animal from '@/components/AnimalDisplay';
 import Header from "@/components/Header";
-import styles from "@/styles/Animals.module.css";
-import { useAuth } from '@/hooks/useAuth';
+import AnimalCreation from "@/components/AnimalCreation";
+// import AnimalEdit from "@/components/AnimalEdit";
+import useDebounce from "@/hooks/useDebounce";
 
-export default function AllAnimals(props) {
-    const [ animals, setAnimals ] = useState(null)
-    const {currentSearch} = props;
+
+
+export default function Animals() {
     const {userId, admin, username, login, logout} = useAuth();
-    useEffect(() => {
-        async function getData() {
-            const response = await fetch("/api/admin/animals")
-            const data = await response.json()
-            setAnimals(data)
-        }
+    const [currentSearch,setCurrentSearch] = useState("");
 
-        getData();
-    },[])
+    const [create,setCreate] = useState(false);
+    const [edit,setEdit] = useState(false);
+    const [animals,setAnimals] = useState([]);
+    const debouncedEdit = useDebounce(edit, 400);
+
+    async function getData() {
+        const response = await fetch("/api/admin/animals")
+        const data = await response.json()
+        // setLoading(true)
+        setAnimals(data)
+    }
+
+    useEffect(() => {
+        getData()
+    },[create,debouncedEdit])
 
     return (
-        <div className={styles.animal_container}>
-            <Header title="All Animals" createFeature={false} />
-            <div className={styles.animal_card_container}> 
-                {animals?.map((animal) => {
-                    return <Animal key={animal._id} animal={animal} currentSearch={currentSearch} />
-                })}
+        <div>
+        <div className={styles.mainPage}>
+            <div className={styles.animalStuff}>
+            
+            <Header title="Animals" createFeature={true} setEdit={setEdit} setCreate={setCreate}/>
+            {edit ? <AnimalEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
+            {create ? <AnimalCreation setCreate={setCreate} userId={userId}/> : <></>}
+            {(create || edit) ? <></> : <div className={styles.animalList}>
+            {animals.map((animal) => {
+                    return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+            })}
+            </div>}
+            
+            
             </div>
+            
+            
         </div>
+        </div>
+        
     )
 }

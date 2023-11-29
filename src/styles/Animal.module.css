@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
+
+
+.animal {
+    margin-bottom: 0px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(0.75);
+    margin-right: 20px;
+    width: 349px;
+    border-radius: 15px;
+    
+}
+
+.picture {
+    border-radius: 15px 15px 0px 0px;
+} 
+
+.user_logo {
+    margin-left: 5px;
+    background-color: #d21312;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 7px;
+}
+.first_letter {
+    font-size: 25px;
+}
+
+.animalInfo {
+    font-weight: bold;
+    color: black;
+    font-family: "Heebo";
+    
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    
+    
+}
+/* .animalsPage {
+    display: flex;
+    flex-direction: row;
+    font-family: "Heebo";
+    color: #7C7171;
+    width: 75%;
+   
+}
+
+.animalList {
+    display: grid;
+    grid-template-columns: 30% 30% 30% ;
+    margin-left: 15px;
+}
+.gridContent {
+    overflow-y: auto; 
+    white-space: nowrap; 
+    height: 80vh;
+  }
+.animalContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    margin-left: 10px;
+    
+}
+.animalInfo {
+    font-weight: bold;
+    color: black;
+    font-family: "Heebo";
+    
+}
+
+.animal {
+    margin-bottom: 0px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(0.75);
+    margin-right: 20px;
+    width: 349px;
+    border-radius: 15px;
+    
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    
+    
+}
+
+.contentType {
+    font-size: 17px;
+}
+
+.headerBox {
+    border-bottom: solid;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-top: 30px;
+    font-size: 15px;
+    width: 90%;
+    font-weight: bold;
+}
+
+.create {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 15%;
+}
+
+.user_logo {
+    margin-left: 5px;
+    background-color: #d21312;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-right: 7px;
+}
+.first_letter {
+    font-size: 25px;
+}
+.picture {
+    border-radius: 15px 15px 0px 0px;
+} */
