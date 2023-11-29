@@ -1,6 +1,6 @@
 import styles from "@/styles/LogCreation.module.css";
 import {useState, useEffect} from "react";
-
+import moment from "moment";
 // //Create API endpoint that gets all animals assosciated with a user.
 //For now, the way it is implemented, a user can only create a log 
 //associated with itself, even if it is admin, it can only delete any traininglog,
@@ -44,38 +44,38 @@ export default function AnimalCreation(props) {
     function cancel() {
         setCreate(false);
     }
-    // useEffect(()=>{
+    useEffect(()=>{
        
-    //     async function createAnimalSelections(user) {
+        async function createAnimalSelections(user) {
             
-    //         const URL = `/api/animal?user=${user}`;
+            const URL = `/api/animal?user=${user}`;
           
-    //         const response = await fetch(URL);
+            const response = await fetch(URL);
             
-    //         const animals = await response.json();
-    //         const animalSelectionsList = [];
+            const animals = await response.json();
+            const animalSelectionsList = [];
        
-    //         animals.forEach((animal)=> {
-    //             animalSelectionsList.push([animal._id,animal.name,animal.breed,animal.owner, animal.hoursTrained, animal.profilePicture]);
-    //         });
+            animals.forEach((animal)=> {
+                animalSelectionsList.push([animal._id,animal.name,animal.breed,animal.owner, animal.hoursTrained, animal.profilePicture]);
+            });
             
-    //         setAnimalSelections(animalSelectionsList);
+            setAnimalSelections(animalSelectionsList);
             
-    //     }
+        }
         
-    //     createAnimalSelections(user);
+        createAnimalSelections(user);
         
-    // },[]);
+    },[]);
 
     return <div className={styles.form}>
             <label className={styles.button}>
                 Name
-            <input type="text" id="name" className = {styles.input} placeholder="Name" />
+            <input type="text" id="title" className = {styles.input} placeholder="Name" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
             <label className={styles.button}>
                 Breed
-                <input type="text" id="breed" className = {styles.input} placeholder="Breed" />
+                <input type="text" id="title" className = {styles.input} placeholder="Breed" />
             </label>
             <label className={styles.button}>
                 Total Hours Trained
