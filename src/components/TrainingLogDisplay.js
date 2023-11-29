@@ -21,7 +21,6 @@ export default function TrainingLogDisplay(props) {
            
             const response = await fetch(URL);
             const data = await response.json();
-            console.log("Updating about this animal:",data.animalname); 
             //Perhaps by the time this runs the database has not been updated yet.
             setUsername(data.username);
             setAnimalBreed(data.animalname);
