@@ -26,7 +26,7 @@ export default function AllTrainingLogs(props) {
 
     return (
         <div className={styles.trainingStuff}>
-            <Header title="All Training Logs" createFeature={false}/>
+            <Header title="All Training Logs" createFeature={false} setCreate={setCreate}/>
             {edit ? <TrainingLogEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
                 {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
                 {(create || edit) ? <></> : <div className={styles.trainingList}>

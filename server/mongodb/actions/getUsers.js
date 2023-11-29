@@ -10,7 +10,7 @@ export default async function getUsers(data) {
     }
 
     try {
-        const pageSize = 10;
+        const pageSize = undefined; //Lets it get all users.
         const lastObjectId = data;
 
         let query = {}

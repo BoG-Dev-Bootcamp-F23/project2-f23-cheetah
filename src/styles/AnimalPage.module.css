@@ -1,0 +1,10 @@
+.animalList {
+    overflow-y: auto; 
+    white-space: nowrap; 
+    height: 80vh; 
+    display: grid;
+    grid-template-columns: 35% 35% 35% ;
+    margin-left: 15px;
+
+}
+
