@@ -10,9 +10,7 @@ import TrainingLogEdit from "@/components/TrainingLogEdit";
 export default function AllTrainingLogs(props) {
     const {userId, admin, username, login, logout} = useAuth();
     //const [ currentSearch, setCurrentSearch ] = useState("");
-    const {currentSearch,setCurrentSearch} = props;
-    const [ create, setCreate ] = useState(false);
-    const [ edit, setEdit ] = useState(false);
+    const {currentSearch,setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [ logList, setLogList ] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
     useEffect(() => {
