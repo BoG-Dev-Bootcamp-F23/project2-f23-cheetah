@@ -7,18 +7,23 @@ import moment from "moment";
 //But can't edit user assosciated with such a training log.
 //Create an ERROR state that shows if it is not "", and shows an error message
 //right above the submit button.
+//Currently edit doesn't work when you are an admin.
 
 
 
-
-export default function TrainingLogCreation(props) {
-    const {setCreate} = props;
+export default function TrainingLogEdit(props) {
+    let {setEdit, edit} = props;
     const user = props.userId;
     //Temporary current user id.
-    ;
+    //Deconstruct day value here.
+    console.log(edit);
+    const day = moment(edit.date).format("D");
+    const year = moment(edit.date).format("YYYY");
+    const month = moment(edit.date).format("MM") - 1;
+    
+    
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState(" ");
-   
     async function saveLog(title,animal,hours,month,day,year,note) {
         //Below ensures all input boxes are ch
         if (title === "" || hours === "" || day === "" || year === "" || note === "") {
@@ -37,33 +42,47 @@ export default function TrainingLogCreation(props) {
             return;
         }
         let date = myMoment.toISOString();
-       
+        
         const URL = `/api/training`;
 
-       
-        const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours};
-        await fetch(URL,{method: "POST",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
+        
+        const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours,identifier:edit._id};
+        console.log(data);
+        await fetch(URL,{method: "PATCH",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage(" ");
-        setCreate(false);
+        setEdit(false);
         //Create animal selection criteria
     }
     function cancel() {
-        setCreate(false);
+        
+        setEdit(false);
+    }
+    async function deleteLog() {
+        const URL = `/api/training/?identifier=${edit._id}`;
+        await fetch(URL,{method: "DELETE"});
+        setEdit(false);
+        
+
     }
     useEffect(()=>{
        
         async function createAnimalSelections(user) {
             
             const URL = `/api/animalsforuser?user=${user}`;
-          
+           
             const response = await fetch(URL);
             
             const animals = await response.json();
-            const animalSelectionsList = [];
-       
+            let animalSelectionsList = [];
+           
             animals.forEach((animal)=> {
+                if (animal._id === edit.animal) {
+                    animalSelectionsList = [[animal._id,animal.name,animal.breed],...animalSelectionsList];
+
+                }else {
                 animalSelectionsList.push([animal._id,animal.name,animal.breed]);
+                }
             });
             
             setAnimalSelections(animalSelectionsList);
@@ -71,33 +90,34 @@ export default function TrainingLogCreation(props) {
         }
         
         createAnimalSelections(user);
-        
     },[]);
 
-    return <div className={styles.form}>
-            <label className={styles.button}>
+    return <>
+            <label>
                 Title
-            <input type="text" id="title" className = {styles.input} placeholder="Title" />
+            <input type="text" id="title" defaultValue={edit.title}className = {styles.input} placeholder="Title" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
-            <label className={styles.button}>
+            <label>
                 Select Animal
-                <select id="animal" className = {styles.input}>
+                <select id="animal">
+                    {/* Instead of using a default value I can ensure the first value displayed is the one I want. I */}
                     {animalSelections.map((animal) => {
+                        
                         return <option key={animal[0]} value={animal[0]}>{animal[1]} - {animal[2]}</option>
+                    
                     })}
 
                 </select>
                 
             </label>
-            <label className={styles.button}>
+            <label>
                 Total Hours Trained
-            <input type="number" id="hours"className = {styles.input} placeholder="Hours" min="0" />
+            <input type="number" id="hours" defaultValue={edit.hours} className = {styles.input} placeholder="Hours" min="0" />
             </label>
-            <div className={styles.date}>
-            <label className={styles.button}>
+            <label>
                 Month
-            <select id="month"name="month" className = {styles.input}> 
+            <select id="month"name="month" defaultValue={month}>
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -113,25 +133,22 @@ export default function TrainingLogCreation(props) {
 
             </select>
             </label>
-            <label className={styles.button}>
+            <label>
                 Day
-                <input type="number" id="day" className = {styles.input}placeholder="Day" min="0"/>
+                <input type="number" id="day" defaultValue={day} placeholder="Day" min="0"/>
             </label>
-            <label className={styles.button}>
+            <label>
                 Year
-                <input type="number" id="year" className = {styles.input} placeholder="Year" min="0"/>
+                <input type="number" id="year" defaultValue={year}placeholder="Year" min="0"/>
             </label>
-            </div>
-            <label className={styles.button}>
+            <label>
                 Note
-            <textarea id="note"className = {styles.note} placeholder="Note" />
+            <input type="text" id="note" defaultValue={edit.description} className = {styles.input} placeholder="Note" />
             </label>
             <div>
             {errorMessage}
             </div>
-            <div className={styles.buttons} id="save">
-            <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
-            <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
+            <button onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("month")?.value,
@@ -140,7 +157,9 @@ export default function TrainingLogCreation(props) {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
-            </div>
-        </div>
+            <button onClick={cancel}>Cancel</button>
+            <button onClick={deleteLog}>Delete</button>
+    
+        </>
 
 }
