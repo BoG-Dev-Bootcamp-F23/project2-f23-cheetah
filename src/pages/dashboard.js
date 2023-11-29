@@ -3,7 +3,8 @@ import SearchBar from '@/components/SearchBar';
 import AllUsers from '@/components/AllUsers';
 import TrainingLogs from "@/components/TrainingLogs";
 import AllTrainingLogs from '@/components/AllTrainingLogs';
-import Header from '@/components/Header';
+import Animals from '@/components/Animals';
+import AllAnimals from '@/components/AllAnimals';
 import { useEffect, useState } from "react";
 import styles from "@/styles/Dashboard.module.css";
 import { useRouter } from 'next/router';
@@ -25,8 +26,10 @@ export default function Dashboard() {
             return <TrainingLogs />
         } else if (selected === "traininglogsadmin") {
             return <AllTrainingLogs />
+        } else if (selected === "animals") {
+            return <Animals />
         } else {
-            return <div>to do</div>
+            return <AllAnimals />
         }
     }
 
