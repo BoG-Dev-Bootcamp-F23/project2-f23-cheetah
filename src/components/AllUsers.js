@@ -21,7 +21,7 @@ export default function AllUsers(props) {
             <div className={styles.user_card_container}>
                 {users?.map((data) => {
                     return (
-                        <UserCard data={data} currentSearch={currentSearch}/>
+                        <UserCard key={data._id} data={data} currentSearch={currentSearch}/>
                     )
                 })}
             </div>
