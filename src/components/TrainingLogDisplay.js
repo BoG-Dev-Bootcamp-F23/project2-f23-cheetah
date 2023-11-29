@@ -34,8 +34,6 @@ export default function TrainingLogDisplay(props) {
     //let checkString = `${props.title}${props.description}${props.hours}${day}${monthAndYear}${animalBreed}${animalName}${username}`;
     let checkString = props.title;
     checkString = checkString.toLowerCase();
-    console.log("Current Search",currentSearch);
-    console.log("CheckString",checkString);
 
     if (currentSearch === "" || checkString.includes(currentSearch)) {
             
