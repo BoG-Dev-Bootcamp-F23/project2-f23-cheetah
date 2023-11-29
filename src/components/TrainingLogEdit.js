@@ -93,14 +93,15 @@ export default function TrainingLogEdit(props) {
     },[]);
 
     return <>
-            <label>
+            <div className={styles.form}>
+            <label className={styles.button}>
                 Title
             <input type="text" id="title" defaultValue={edit.title}className = {styles.input} placeholder="Title" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
-            <label>
+            <label className={styles.button}>
                 Select Animal
-                <select id="animal">
+                <select id="animal" className={styles.input}>
                     {/* Instead of using a default value I can ensure the first value displayed is the one I want. I */}
                     {animalSelections.map((animal) => {
                         
@@ -111,13 +112,14 @@ export default function TrainingLogEdit(props) {
                 </select>
                 
             </label>
-            <label>
+            <label className={styles.button}>
                 Total Hours Trained
             <input type="number" id="hours" defaultValue={edit.hours} className = {styles.input} placeholder="Hours" min="0" />
             </label>
-            <label>
+            <div className={styles.date}>
+            <label className={styles.button}>
                 Month
-            <select id="month"name="month" defaultValue={month}>
+            <select id="month"name="month" defaultValue={month} className = {styles.input}>
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -133,22 +135,26 @@ export default function TrainingLogEdit(props) {
 
             </select>
             </label>
-            <label>
+            <label className={styles.button}>
                 Day
-                <input type="number" id="day" defaultValue={day} placeholder="Day" min="0"/>
+                <input type="number" id="day" className = {styles.input} defaultValue={day} placeholder="Day" min="0"/>
             </label>
-            <label>
+            <label className={styles.button}>
                 Year
-                <input type="number" id="year" defaultValue={year}placeholder="Year" min="0"/>
+                <input type="number" id="year" className = {styles.input} defaultValue={year}placeholder="Year" min="0"/>
             </label>
-            <label>
+            </div>
+            <label className={styles.button}>
                 Note
-            <input type="text" id="note" defaultValue={edit.description} className = {styles.input} placeholder="Note" />
+            <textarea type="text" id="note" className = {styles.note} defaultValue={edit.description} placeholder="Note" />
             </label>
             <div>
             {errorMessage}
             </div>
-            <button onClick={() => {saveLog(document.getElementById("title")?.value,
+            
+            <div className={styles.buttons} id="save">
+            <button onClick={cancel} className={styles.input}>Cancel</button>
+            <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("month")?.value,
@@ -157,8 +163,10 @@ export default function TrainingLogEdit(props) {
             document.getElementById("note")?.value,)
             
             }}>Save</button>
-            <button onClick={cancel}>Cancel</button>
-            <button onClick={deleteLog}>Delete</button>
+            
+            <button onClick={deleteLog} className={styles.input}>Delete</button>
+            </div>
+            </div>
     
         </>
 
