@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import styles from "@/styles/Animals.module.css";
+import { useAuth } from '@/hooks/useAuth';
 
 export default function AllAnimals(props) {
     const [ animals, setAnimals ] = useState(null)
     const {currentSearch} = props;
-
+    const {userId, admin, username, login, logout} = useAuth();
     useEffect(() => {
         async function getData() {
             const response = await fetch("/api/admin/animals")
