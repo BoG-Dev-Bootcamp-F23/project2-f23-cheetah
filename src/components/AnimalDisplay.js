@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/Animal.module.css";
-import Image from "next/image";
-import moment from "moment";
-import redpen from "@/images/redpen.png";
 
 export default function Animal(props) {
     const {setEdit, edit, debouncedEdit, currentSearch, admin} = props;

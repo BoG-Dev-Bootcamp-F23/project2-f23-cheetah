@@ -27,7 +27,7 @@ export default function Dashboard() {
         } else if (selected === "traininglogsadmin") {
             return <AllTrainingLogs currentSearch={currentSearch}  create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
         } else if (selected === "animals") {
-            return <Animals currentSearch={currentSearch}/>
+            return <Animals currentSearch={currentSearch} create={create} setCreate={setCreate}/>
         } else {
             return <AllAnimals currentSearch={currentSearch}/>
         }

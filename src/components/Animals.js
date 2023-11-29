@@ -4,17 +4,13 @@ import { useEffect, useState } from "react";
 import Animal from '@/components/AnimalDisplay';
 import Header from "@/components/Header";
 import AnimalCreation from "@/components/AnimalCreation";
-import AnimalEdit from "@/components/AnimalEdit";
 import useDebounce from "@/hooks/useDebounce";
 
 
 
-export default function Animals() {
+export default function Animals(props) {
     const {userId, admin, username, login, logout} = useAuth();
-    const [currentSearch,setCurrentSearch] = useState("");
-
-    const [create,setCreate] = useState(false);
-    const [edit,setEdit] = useState(false);
+    const {currentSearch, setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [animals,setAnimals] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
 
@@ -34,12 +30,13 @@ export default function Animals() {
         <div className={styles.mainPage}>
             <div className={styles.animalStuff}>
             
-            <Header title="Animals" createFeature={true} setEdit={setEdit} setCreate={setCreate}/>
-            {edit ? <AnimalEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
+            <Header title="Animals" createFeature={true} setCreate={setCreate}/>
             {create ? <AnimalCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.animalList}>
             {animals.map((animal) => {
+                if (animal.owner === userId) {
                     return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                }
             })}
             </div>}
             
