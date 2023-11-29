@@ -1,4 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import Cookies from "js-cookie"
+import jwt from "jsonwebtoken"
 
 const AuthContext = createContext();
 
@@ -7,13 +9,17 @@ export const AuthProvider = ({ children }) => {
     const [admin, setAdmin] = useState(null);
     const [username, setUsername] = useState(null);
 
-    const login = (data) => {
-        setUserId(data._id)
-        setAdmin(data.admin)
-        setUsername(data.fullName)
-    }
+    const login = (token) => {
+        Cookies.set('auth_user', token, { expires: 7})
+        const info = jwt.decode(token)
+        setUserId(info.ret._id)
+        setAdmin(info.ret.admin)
+        setUsername(info.ret.fullName)
+
+    };
 
     const logout = () => {
+        Cookies.remove('auth_user')
         setUserId(null)
         setAdmin(null)
         setUsername(null)

@@ -31,7 +31,6 @@ export default function TrainingLogs(props) {
             {create ? <TrainingLogCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.trainingList}>
                 {logList.map((logItem) => {
-                    console.log(logItem.user);
                     if (logItem.user === userId) {
                         //Now check and ensure that the search query exists is in a created search query string.
                         //Let the TrainingLogDisplay decide whether to conditionally render itself or not.

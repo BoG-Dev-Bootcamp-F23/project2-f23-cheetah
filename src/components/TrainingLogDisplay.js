@@ -21,7 +21,6 @@ export default function TrainingLogDisplay(props) {
            
             const response = await fetch(URL);
             const data = await response.json();
-            console.log("Updating about this animal:",data.animalname); 
             //Perhaps by the time this runs the database has not been updated yet.
             setUsername(data.username);
             setAnimalBreed(data.animalname);
@@ -34,8 +33,6 @@ export default function TrainingLogDisplay(props) {
     //let checkString = `${props.title}${props.description}${props.hours}${day}${monthAndYear}${animalBreed}${animalName}${username}`;
     let checkString = props.title;
     checkString = checkString.toLowerCase();
-    console.log("Current Search",currentSearch);
-    console.log("CheckString",checkString);
 
     if (currentSearch === "" || checkString.includes(currentSearch)) {
             
