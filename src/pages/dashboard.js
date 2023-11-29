@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/Dashboard.module.css";
 import { useRouter } from 'next/router';
 import { useAuth } from '@/hooks/useAuth';
+import Cookies from "js-cookie";
+import jwt from "jsonwebtoken"
 
 
 export default function Dashboard() {
@@ -34,9 +36,11 @@ export default function Dashboard() {
     }
 
     useEffect(() => {
-        if (userId === null) {
+        const token = Cookies.get('auth_user')
+        if (token === undefined) {
             router.push("/login");
         } else {
+            login(token)
             display();
         }
     }, [selected])

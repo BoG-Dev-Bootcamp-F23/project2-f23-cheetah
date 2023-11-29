@@ -1,6 +1,5 @@
 import verifyUser from "@/../server/mongodb/actions/verifyUser"
 import jwt from 'jsonwebtoken'
-import { serialize } from "cookie";
 
 const MAX_AGE = 60*60; // 1 hour
 
@@ -12,22 +11,9 @@ export default async function handler(req, res) {
             const { userId, username, email, password, admin } = ret;
 
             const secret = process.env.JWT_SECRET || ""
-            const token = jwt.sign({ userId, }, secret, { expiresIn: MAX_AGE, })
-            const serialized = serialize("OurSiteJWT", token, {
-                httpOnly: true,
-                secure: true,
-                sameSite: "strict",
-                maxAge: MAX_AGE,
-                path: "/"
-            })
+            const token = await jwt.sign({ ret }, secret)
 
-            const response = {
-                message: "Authenticated"
-            }
-
-            res.setHeader('Set-Cookie', serialized)
-            // return res.status(200).json({success: true, message: ret})
-            return res.status(200).json({success: true, message: ret})
+            return res.status(200).json({success: true, message: ret, token: token})
 
         } catch (e) {
             console.log("v")

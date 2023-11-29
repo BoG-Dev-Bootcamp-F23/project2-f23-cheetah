@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useContext } from 'react'
 import SearchBar from '@/components/SearchBar';
+import Cookies from "js-cookie";
 
 async function handleClick(email, password, router, login) {
     
@@ -32,7 +33,7 @@ async function handleClick(email, password, router, login) {
             document.getElementById("error_message").style.display = 'block'
         } else {
             document.getElementById("error_message").style.display = 'none'
-            login(res.message)
+            login(res.token)
             router.push('./dashboard');
         }  
     } catch (e) {
@@ -47,6 +48,14 @@ async function handleClick(email, password, router, login) {
 export default function LoginPage() {
     const router = useRouter()
     const { userId, admin, username, login, logout } = useAuth();
+
+    useEffect(() => {
+        const token = Cookies.get('auth_user')
+        if (token !== undefined) {
+            login(token);
+            router.push("/dashboard");
+        }
+    }, [])
 
     return (
         <div>
