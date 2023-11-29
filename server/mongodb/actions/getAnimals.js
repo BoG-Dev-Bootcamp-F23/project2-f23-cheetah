@@ -10,7 +10,7 @@ export default async function getAnimals(data) {
     }
     
     try {
-        const pageSize = 10;
+        const pageSize = undefined;
         const lastObjectId = data;
 
         let query = {}

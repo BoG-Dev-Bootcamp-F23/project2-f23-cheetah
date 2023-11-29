@@ -44,28 +44,6 @@ export default function AnimalCreation(props) {
     function cancel() {
         setCreate(false);
     }
-    useEffect(()=>{
-       
-        async function createAnimalSelections(user) {
-            
-            const URL = `/api/animal?user=${user}`;
-          
-            const response = await fetch(URL);
-            
-            const animals = await response.json();
-            const animalSelectionsList = [];
-       
-            animals.forEach((animal)=> {
-                animalSelectionsList.push([animal._id,animal.name,animal.breed,animal.owner, animal.hoursTrained, animal.profilePicture]);
-            });
-            
-            setAnimalSelections(animalSelectionsList);
-            
-        }
-        
-        createAnimalSelections(user);
-        
-    },[]);
 
     return <div className={styles.form}>
             <label className={styles.button}>
