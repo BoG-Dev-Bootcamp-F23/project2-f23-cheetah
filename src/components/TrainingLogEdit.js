@@ -16,7 +16,6 @@ export default function TrainingLogEdit(props) {
     const user = props.userId;
     //Temporary current user id.
     //Deconstruct day value here.
-    console.log(edit);
     const day = moment(edit.date).format("D");
     const year = moment(edit.date).format("YYYY");
     const month = moment(edit.date).format("MM") - 1;
@@ -47,7 +46,6 @@ export default function TrainingLogEdit(props) {
 
         
         const data = {title:title,user:user,animal:animal,date:date,description:note,hours:hours,identifier:edit._id};
-        console.log(data);
         await fetch(URL,{method: "PATCH",headers: {'Content-Type': 'application/json'}, body:JSON.stringify(data)});
         //Create traininglog now.
         setErrorMessage(" ");
