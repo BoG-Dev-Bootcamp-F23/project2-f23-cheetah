@@ -43,7 +43,7 @@ export default function Dashboard() {
     
     return (
         <div>
-            <SearchBar setCurrentSearch = {setCurrentSearch} />
+            <SearchBar setCurrentSearch = {setCurrentSearch} selected={selected} />
             <div className = {styles.main_page}>
                 <Sidebar selected = {selected} setSelected = {setSelected} />
                 {display()}

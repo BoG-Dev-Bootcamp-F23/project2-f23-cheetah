@@ -2,10 +2,19 @@ import styles from "@/styles/SearchBar.module.css";
 import Image from "next/image";
 import focus from "@/images/Vectorsearchbar.png";
 import progress from "@/images/Titleprogress.png";
-
+import {useEffect} from "react";
 export default function SearchBar(props) {
-    const {setCurrentSearch} = props;
+    const {setCurrentSearch, selected} = props;
     //Use conditional rendering based on whether setCurrentSearch is passed in to determine whether search should show or not.
+    useEffect(()=>{
+        setCurrentSearch("");
+        const searchInput = document.getElementById("search");
+
+    // Check if the input element exists before setting its value
+        
+        searchInput.value = "";
+        
+    },[selected]);
     return <div className={styles.titleBar}>
         <Image src={progress} height="33"/>
         {setCurrentSearch === undefined ? <div></div>:
