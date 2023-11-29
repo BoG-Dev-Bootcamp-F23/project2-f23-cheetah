@@ -21,21 +21,21 @@ export default function Dashboard() {
     
     function display() {
         if (selected === "usersadmin") {
-            return <AllUsers />
+            return <AllUsers currentSearch={currentSearch}/>
         } else if (selected === "traininglogs") {
-            return <TrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch} create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
+            return <TrainingLogs currentSearch={currentSearch} create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
         } else if (selected === "traininglogsadmin") {
-            return <AllTrainingLogs currentSearch={currentSearch} setCurrentSearch={setCurrentSearch} create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
+            return <AllTrainingLogs currentSearch={currentSearch}  create={create} setCreate={setCreate} edit={edit} setEdit={setEdit}/>
         } else if (selected === "animals") {
-            return <Animals />
+            return <Animals currentSearch={currentSearch}/>
         } else {
-            return <AllAnimals />
+            return <AllAnimals currentSearch={currentSearch}/>
         }
     }
 
     useEffect(() => {
         if (userId === null) {
-            router.push("/login")
+            router.push("/login");
         } else {
             display();
         }

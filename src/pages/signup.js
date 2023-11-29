@@ -56,7 +56,7 @@ export default function SignupPage() {
 
     return (
         <div>
-            <SearchBar/>
+            <SearchBar />
             <div className = {styles.loginContainer} id = "login_container">
                 <div className={styles.loader} id = "loading_bar">
                     <div className={styles.loader_bar}></div>

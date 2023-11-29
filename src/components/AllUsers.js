@@ -3,8 +3,9 @@ import Header from '@/components/Header'
 import { useEffect, useState } from "react";
 import styles from "@/styles/AllUsers.module.css";
 
-export default function AllUsers() {
+export default function AllUsers(props) {
     const [ users, setUsers ] = useState([]);
+    const {currentSearch} = props;
 
     useEffect(() => {
         async function getAllUsers() {
@@ -20,7 +21,7 @@ export default function AllUsers() {
             <div className={styles.user_card_container}>
                 {users?.map((data) => {
                     return (
-                        <UserCard data={data}/>
+                        <UserCard data={data} currentSearch={currentSearch}/>
                     )
                 })}
             </div>
