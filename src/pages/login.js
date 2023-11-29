@@ -5,6 +5,8 @@ import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useContext } from 'react'
 import SearchBar from '@/components/SearchBar';
 import Cookies from "js-cookie";
+import Image from 'next/image'
+import ellipse from "@/images/ellipse.png";
 
 async function handleClick(email, password, router, login) {
     
@@ -61,6 +63,7 @@ export default function LoginPage() {
         <div>
             <SearchBar/>
             <div className = {styles.loginContainer} id = "login_container">
+            
                 <div className={styles.loader} id = "loading_bar">
                     <div className={styles.loader_bar}></div>
                 </div>
@@ -71,7 +74,7 @@ export default function LoginPage() {
                 <button className={styles.loginButton} onClick={() => handleClick(document.getElementById("email")?.value, document.getElementById("password")?.value, router, login)}>Log in</button>
                 
                 <Link href="/signup" className = {styles.link}><p>Don't have an account? <b>Sign up</b></p></Link>
-                
+                <Image className={styles.ellipse} src={ellipse}/>
             </div>
             
         </div>

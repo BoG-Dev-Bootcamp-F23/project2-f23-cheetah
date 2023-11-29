@@ -134,3 +134,8 @@
 .header {
     margin-bottom: 8px;
 }
+.ellipse {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

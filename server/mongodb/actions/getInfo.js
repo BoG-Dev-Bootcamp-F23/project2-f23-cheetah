@@ -18,7 +18,7 @@ export default async function getInfo(data) {
     const userInfo = await User.findById(user);
     const animalInfo = await Animal.findById(animal);
     
-    const returnVal = {username: userInfo.fullName,animalname: animalInfo.name,breed: animalInfo.breed};
+    const returnVal = {username: userInfo.fullName,animalname: animalInfo.name,breed: animalInfo.breed, hoursTrained: animalInfo.hoursTrained, profilePicture: animalInfo.profilePicture};
     
     return returnVal;
     }catch(e) {

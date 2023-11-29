@@ -1,15 +1,23 @@
 import styles from '@/styles/UserCard.module.css'
 
 export default function UserCard(props) {
-    const data = props.data
+    const data = props.data;
+    const {setDeleteOccured, deleteOccured} = props;
+    
     const currentSearch = props.currentSearch;
     const tempUsername = data.fullName.toLowerCase();
+    async function deleteLog() {
+        const URL = `/api/user/?identifier=${data._id}`;
+        await fetch(URL,{method: "DELETE"});
+        console.log("Set deleted");
+        setDeleteOccured(deleteOccured * -1);
+    }
     if (tempUsername.includes(currentSearch)) {
 
     
         return (
             <div className={styles.user_info_container}>
-                <div className={styles.user_logo}>
+                <div className={styles.user_logo} onClick={deleteLog}>
                     <b className={styles.first_letter}>{data.fullName?.charAt(0).toUpperCase()}</b>
                 </div>
                 <div>
