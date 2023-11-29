@@ -8,12 +8,9 @@ import useDebounce from "@/hooks/useDebounce";
 
 
 
-export default function Animals() {
+export default function Animals(props) {
     const {userId, admin, username, login, logout} = useAuth();
-    const [currentSearch,setCurrentSearch] = useState("");
-
-    const [create,setCreate] = useState(false);
-    const [edit,setEdit] = useState(false);
+    const {currentSearch,setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [animals,setAnimals] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
 
@@ -29,25 +26,22 @@ export default function Animals() {
     },[create,debouncedEdit])
 
     return (
-        <div>
-        <div className={styles.mainPage}>
+        
+
             <div className={styles.animalStuff}>
             
-            <Header title="Animals" createFeature={!create && !edit} setEdit={setEdit} setCreate={setCreate}/>
-            {edit ? <AnimalEdit setEdit = {setEdit} edit={edit} userId={userId}/>: <></>}
+            <Header className={styles.header} title="Animals" createFeature={false} setCreate={setCreate}/>
             {create ? <AnimalCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.animalList}>
             {animals.map((animal) => {
-                    return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                if (admin || animal.owner === userId) {
+                    return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} admin={admin}/>
+                }
             })}
             </div>}
             
             
             </div>
-            
-            
-        </div>
-        </div>
         
     )
 }

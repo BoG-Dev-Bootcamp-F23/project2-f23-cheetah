@@ -27,7 +27,7 @@ export default function Animal(props) {
         }
         getInfo(props.owner,props._id)},[debouncedEdit]);
 
-        let checkString = props.name
+        let checkString = `${hoursTrained}${animalBreed}${animalName}${username}`;
         checkString = checkString.toLowerCase();
 
         if (currentSearch === "" || checkString.includes(currentSearch)) {
