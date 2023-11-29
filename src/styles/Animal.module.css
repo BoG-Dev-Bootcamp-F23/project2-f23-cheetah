@@ -2,12 +2,13 @@
 
 
 .animal {
-    margin-bottom: 0px;
+    margin-bottom: 90px;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
-    transform: scale(0.75);
-    margin-right: 20px;
+    transform: scale(1);
+    margin-right: 90px;
     width: 349px;
     border-radius: 15px;
+
     
 }
 
