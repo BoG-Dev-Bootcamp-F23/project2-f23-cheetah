@@ -6,13 +6,17 @@ import {useEffect} from "react";
 export default function SearchBar(props) {
     const {setCurrentSearch, selected} = props;
     //Use conditional rendering based on whether setCurrentSearch is passed in to determine whether search should show or not.
+    
     useEffect(()=>{
-        setCurrentSearch("");
+        if (setCurrentSearch) {
+            setCurrentSearch("");
+        }
         const searchInput = document.getElementById("search");
 
     // Check if the input element exists before setting its value
-        
+        if (searchInput) {
         searchInput.value = "";
+        }
         
     },[selected]);
     return <div className={styles.titleBar}>
