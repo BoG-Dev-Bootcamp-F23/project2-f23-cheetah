@@ -7,7 +7,7 @@ import styles from "@/styles/Animals.module.css";
 export default function Animals(props) {
     const { userId, admin, username, login, logout } = useAuth();
     const [ animals, setAnimals ] = useState(null)
-    const {currentSearch} = props;
+    const {currentSearch, create, setCreate} = props;
 
     useEffect(() => {
         async function getData() {
@@ -21,7 +21,7 @@ export default function Animals(props) {
 
     return (
         <div className={styles.animal_container}>
-            <Header title="Animals" createFeature={true} />
+            <Header title="Animals" createFeature={true} setCreate={setCreate} />
             <div className={styles.animal_card_container}> 
                 {animals?.map((animal) => {
                     if (animal.owner === userId) {
