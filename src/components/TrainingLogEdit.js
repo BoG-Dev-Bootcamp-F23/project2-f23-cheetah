@@ -152,7 +152,7 @@ export default function TrainingLogEdit(props) {
             
             <div className={styles.buttons} id="save">
             <button onClick={cancel} className={styles.cancelButton}>Cancel</button>
-            <button className={styles.input} onClick={() => {saveLog(document.getElementById("title")?.value,
+            <button className={styles.saveButton} onClick={() => {saveLog(document.getElementById("title")?.value,
             document.getElementById("animal")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("month")?.value,
@@ -162,7 +162,7 @@ export default function TrainingLogEdit(props) {
             
             }}>Save</button>
             
-            <button onClick={deleteLog} className={styles.input}>Delete</button>
+            <button onClick={deleteLog} className={styles.deleteButton}>Delete</button>
             </div>
             </div>
     

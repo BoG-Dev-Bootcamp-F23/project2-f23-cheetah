@@ -67,14 +67,14 @@ export default function AnimalCreation(props) {
             {errorMessage}
             </div>
             <div className={styles.buttons} id="save">
-            <button className={styles.input} onClick={() => {
+            <button onClick={cancel} id="cancel" className={styles.cancelButton}>Cancel</button>
+            <button className={styles.saveButton} onClick={() => {
             saveLog(document.getElementById("name")?.value,
             document.getElementById("breed")?.value,
             document.getElementById("hours")?.value,
             document.getElementById("profilePicture")?.value)
         
             }}>Save</button>
-            <button onClick={cancel} id="cancel" className={styles.input}>Cancel</button>
             </div>
         </div>
 
