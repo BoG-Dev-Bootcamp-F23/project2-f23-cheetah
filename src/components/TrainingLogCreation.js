@@ -124,7 +124,7 @@ export default function TrainingLogCreation(props) {
             </div>
             <label className={styles.button}>
                 Note
-            <input type="text" id="note"className = {styles.input} placeholder="Note" />
+            <textarea id="note"className = {styles.note} placeholder="Note" />
             </label>
             <div>
             {errorMessage}

@@ -17,10 +17,17 @@
 
 }
 .input {
-    height: 30px;
+    height: 50px;
     padding: 5px;
     font-family: "Heebo";
     
+}
+.note {
+    height: 100px;
+    padding: 5px;
+    font-family: "Heebo";
+    text-align: left;
+    vertical-align: text-top;
 }
 .buttons {
     display: flex;
