@@ -43,7 +43,7 @@ async function handleClick(fullName, email, password, confirm_password, admin, r
 
         if (data.success) {
             login(data.message)
-            router.push("traininglogs")
+            router.push("/dashboard");
         } else {
             if (data.message === "Email already exists") {
                 document.getElementById("error_message3").style.display = 'block'

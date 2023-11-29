@@ -45,7 +45,7 @@ export default function Animal(props) {
                 </div>
                 <div className={styles.inforight}>
                     <div className={styles.animalInfo}>{animalName} - {animalBreed}</div>
-                    <div className={styles.trainingInfo}>{username} • Trained: {hoursTrained}</div> 
+                    <div className={styles.trainingInfo}>{username} • Trained: {hoursTrained} hours</div> 
                 </div>
             </div>
             <div></div>

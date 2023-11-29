@@ -6,7 +6,6 @@ import { useEffect, useContext } from 'react'
 import SearchBar from '@/components/SearchBar';
 import Image from 'next/image'
 import ellipse from "@/images/ellipse.png";
-import add from "@/images/icon-park-outline_addadd.png";
 
 async function handleClick(email, password, router, login) {
     
