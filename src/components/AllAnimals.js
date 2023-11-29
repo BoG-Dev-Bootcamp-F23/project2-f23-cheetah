@@ -30,7 +30,7 @@ export default function Animals(props) {
 
             <div className={styles.animalStuff}>
             
-            <Header className={styles.header} title="Animals" createFeature={false} setCreate={setCreate}/>
+            <Header className={styles.header} title="All Animals" createFeature={false} setCreate={setCreate}/>
             {create ? <AnimalCreation setCreate={setCreate} userId={userId}/> : <></>}
             {(create || edit) ? <></> : <div className={styles.animalList}>
             {animals.map((animal) => {

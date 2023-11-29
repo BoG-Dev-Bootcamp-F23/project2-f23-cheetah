@@ -44,38 +44,16 @@ export default function AnimalCreation(props) {
     function cancel() {
         setCreate(false);
     }
-    useEffect(()=>{
-       
-        async function createAnimalSelections(user) {
-            
-            const URL = `/api/animal?user=${user}`;
-          
-            const response = await fetch(URL);
-            
-            const animals = await response.json();
-            const animalSelectionsList = [];
-       
-            animals.forEach((animal)=> {
-                animalSelectionsList.push([animal._id,animal.name,animal.breed,animal.owner, animal.hoursTrained, animal.profilePicture]);
-            });
-            
-            setAnimalSelections(animalSelectionsList);
-            
-        }
-        
-        createAnimalSelections(user);
-        
-    },[]);
 
     return <div className={styles.form}>
             <label className={styles.button}>
                 Name
-            <input type="text" id="title" className = {styles.input} placeholder="Name" />
+            <input type="text" id="name" className = {styles.input} placeholder="Name" />
             </label>
             {/* Put selection for dog here, will need to put code elsewhere as well. */}
             <label className={styles.button}>
                 Breed
-                <input type="text" id="title" className = {styles.input} placeholder="Breed" />
+                <input type="text" id="breed" className = {styles.input} placeholder="Breed" />
             </label>
             <label className={styles.button}>
                 Total Hours Trained
@@ -90,7 +68,6 @@ export default function AnimalCreation(props) {
             </div>
             <div className={styles.buttons} id="save">
             <button className={styles.input} onClick={() => {
-            console.log("Name: ",document.getElementById("name")?.value);
             saveLog(document.getElementById("name")?.value,
             document.getElementById("breed")?.value,
             document.getElementById("hours")?.value,
