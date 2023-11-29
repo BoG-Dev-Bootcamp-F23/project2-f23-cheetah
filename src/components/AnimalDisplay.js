@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from "@/styles/Animal.module.css";
-import Image from "next/image";
-import moment from "moment";
-import redpen from "@/images/redpen.png";
 
 export default function Animal(props) {
     const {setEdit, edit, debouncedEdit, currentSearch, admin} = props;
@@ -30,7 +27,7 @@ export default function Animal(props) {
         }
         getInfo(props.owner,props._id)},[debouncedEdit]);
 
-        let checkString = `${hoursTrained}${animalBreed}${animalName}${username}`;
+        let checkString = props.name
         checkString = checkString.toLowerCase();
 
         if (currentSearch === "" || checkString.includes(currentSearch)) {
