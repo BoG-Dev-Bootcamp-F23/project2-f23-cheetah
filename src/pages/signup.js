@@ -68,8 +68,8 @@ export default function SignupPage () {
   useEffect(() => {
     const token = Cookies.get('auth_user')
     if (token !== undefined) {
-      login(token)
       router.push('/dashboard')
+      login(token)
     }
   }, [])
 
@@ -144,7 +144,7 @@ export default function SignupPage () {
           </p>
         </Link>
         <div className={styles.attribution}>
-          Developed by Emily Wu, Ankith Thalanki, and Ishaan Ali. Designed by
+          Developed by Emily Liu, Ankith Thalanki, and Ishaan Ali. Designed by
           Long Lam.
         </div>
         <Image className={styles.ellipse} src={ellipse} />
