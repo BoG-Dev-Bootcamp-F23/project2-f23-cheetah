@@ -9,6 +9,10 @@
 .sidebar_icon {
   margin-right: 7px;
 }
+.sidebar_icon:hover {
+  width: 26px;
+  height: 26px;
+}
 .sidebar_icon_selected {
   margin-right: 7px;
   filter: invert(1);

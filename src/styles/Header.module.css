@@ -25,6 +25,7 @@
 .create:hover {
   background-color: #dcdcdc;
   transition: background-color ease 150ms;
+  cursor: pointer;
 }
 .text {
   color: #7c7171;
