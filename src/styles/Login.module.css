@@ -69,6 +69,7 @@
   flex-direction: row;
   width: 40%;
   margin-bottom: 2%;
+  align-items: center;
 }
 
 .adminCheckbox {
@@ -80,7 +81,7 @@
   width: 15px;
   height: 15px;
   border: 2px solid #d21312;
-  margin-right: 4px;
+  margin-right: 7px;
 }
 
 .adminCheckbox:after {
