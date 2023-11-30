@@ -10,15 +10,14 @@ export default async function getUsers (data) {
   }
 
   try {
-    const pageSize = undefined //Lets it get all users.
-    const lastObjectId = data
+    const { pageSize, lastObjectId } = data
 
     let query = {}
     if (lastObjectId) {
-      query._id = { $lt: lastObjectId }
+      query._id = { $gt: lastObjectId } //Gives all objects less than the lastObjectId.
     }
     const users = await User.find(query, { password: 0 })
-      .sort({ _id: 1 })
+      .sort({ _id: 1 }) //Ascending order
       .limit(pageSize)
     return users
   } catch (e) {
