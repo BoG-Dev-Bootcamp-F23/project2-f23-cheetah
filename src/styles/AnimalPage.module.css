@@ -1,17 +1,13 @@
 .animalList {
-    overflow-y: auto; 
-    overflow-x: hidden;
-    white-space: nowrap; 
-    height: 80vh; 
-    width: 90vw;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 20px;
-    padding: 10px;
-    margin-left: 100px;
-
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
+  height: 80vh;
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin: 20px;
+  padding: 10px;
+  margin-left: 100px;
 }
-
-
-
