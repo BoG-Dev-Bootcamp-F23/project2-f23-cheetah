@@ -43,6 +43,10 @@ export default function TrainingLogEdit (props) {
       setErrorMessage(e.message)
       return
     }
+    if (!myMoment.isValid()) {
+      setErrorMessage("Invalid date given.")
+      return
+    }
     let date = myMoment.toISOString()
 
     const URL = `/api/training`
