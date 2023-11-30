@@ -17,8 +17,7 @@
     border-radius: 10px;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
-    
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .dateStuff {

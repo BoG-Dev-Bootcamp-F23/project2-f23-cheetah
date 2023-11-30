@@ -15,7 +15,10 @@ export default function TrainingLogCreation(props) {
     const {setCreate} = props;
     const user = props.userId;
     //Temporary current user id.
-    ;
+    //Get current date from moment
+    const currentMonth = moment().format("M");
+    const currentYear = moment().format("YYYY");
+    const currentDay  = moment().format("D");
     const [animalSelections,setAnimalSelections] = useState([]);
     const [errorMessage,setErrorMessage] = useState(" ");
    
@@ -97,7 +100,7 @@ export default function TrainingLogCreation(props) {
             <div className={styles.date}>
             <label className={styles.button}>
                 Month
-            <select id="month"name="month" className = {styles.input}> 
+            <select id="month"name="month" defaultValue={currentMonth-1}className = {styles.input}> 
                 <option value="0">January</option>
                 <option value="1">February</option>
                 <option value="2">March</option>
@@ -115,11 +118,11 @@ export default function TrainingLogCreation(props) {
             </label>
             <label className={styles.button}>
                 Day
-                <input type="number" id="day" className = {styles.input}placeholder="Day" min="0"/>
+                <input type="number" id="day" defaultValue={currentDay}className = {styles.input}placeholder="Day" min="0"/>
             </label>
             <label className={styles.button}>
                 Year
-                <input type="number" id="year" className = {styles.input} placeholder="Year" min="0"/>
+                <input type="number" id="year" defaultValue={currentYear}className = {styles.input} placeholder="Year" min="0"/>
             </label>
             </div>
             <label className={styles.button}>
