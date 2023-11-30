@@ -27,45 +27,40 @@ export default function Animals (props) {
   }, [create, debouncedEdit, deleteOccured])
 
   return (
-    <div>
-      <div className={styles.mainPage}>
-        <div className={styles.animalStuff}>
-          <Header
-            title='Animals'
-            createFeature={!create}
-            setCreate={setCreate}
-          />
-          {loading ? <div className="spinner"></div>:<></>}
-          {create ? (
-            <AnimalCreation setCreate={setCreate} userId={userId} />
-          ) : (
-            <></>
-          )}
-          {create || edit ? (
-            <></>
-          ) : (
-            <div className={styles.animalList}>
-              {animals.map(animal => {
-                if (animal.owner === userId) {
-                  return (
-                    <Animal
-                      key={animal._id}
-                      setEdit={setEdit}
-                      edit={edit}
-                      {...animal}
-                      debouncedEdit={debouncedEdit}
-                      currentSearch={currentSearch}
-                      deleteOccured={deleteOccured}
-                      setDeleteOccured={setDeleteOccured}
-                    />
-                  )
-                }
-              })}
-            </div>
-          )}
+    <div className={styles.animalStuff}>
+      <Header
+        title='Animals'
+        createFeature={!create}
+        setCreate={setCreate}
+      />
+      {loading ? <div className="spinner"></div>:<></>}
+      {create ? (
+        <AnimalCreation setCreate={setCreate} userId={userId} />
+      ) : (
+        <></>
+      )}
+      {create || edit ? (
+        <></>
+      ) : (
+        <div className={styles.animalList}>
+          {animals.map(animal => {
+            if (animal.owner === userId) {
+              return (
+                <Animal
+                  key={animal._id}
+                  setEdit={setEdit}
+                  edit={edit}
+                  {...animal}
+                  debouncedEdit={debouncedEdit}
+                  currentSearch={currentSearch}
+                  deleteOccured={deleteOccured}
+                  setDeleteOccured={setDeleteOccured}
+                />
+              )
+            }
+          })}
         </div>
-      </div>
-      
+      )}
     </div>
   )
 }

@@ -1,24 +1,18 @@
-@import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
-
 .animal {
-  margin-bottom: 90px;
+  margin-bottom: 20px;
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
-
-  margin-right: 90px;
+  margin-right: 20px;
   width: 350px;
   border-radius: 15px;
   height: 327px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .picture {
   height: 260px;
   border-radius: 15px 15px 0px 0px;
 }
-
 .user_logo {
   margin-left: 5px;
   background-color: #d21312;
@@ -34,7 +28,6 @@
 .first_letter {
   font-size: 25px;
 }
-
 .animalInfo {
   font-weight: bold;
   color: black;
