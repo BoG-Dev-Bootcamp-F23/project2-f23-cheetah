@@ -5,6 +5,8 @@ import { useAuth } from '@/hooks/useAuth'
 import SearchBar from '@/components/SearchBar';
 import Image from 'next/image'
 import ellipse from "@/images/ellipse.png";
+import { useEffect } from 'react';
+import Cookies from "js-cookie";
 
 async function handleClick(fullName, email, password, confirm_password, admin, router, login) {
 
@@ -42,7 +44,7 @@ async function handleClick(fullName, email, password, confirm_password, admin, r
         loginContainer.style.opacity = 1
 
         if (data.success) {
-            login(data.message)
+            login(data.token)
             router.push("/dashboard");
         } else {
             if (data.message === "Email already exists") {
@@ -55,6 +57,14 @@ async function handleClick(fullName, email, password, confirm_password, admin, r
 export default function SignupPage() {
     const router = useRouter()
     const { userId, admin, username, login, logout } = useAuth();
+
+    useEffect(() => {
+        const token = Cookies.get('auth_user')
+        if (token !== undefined) {
+            login(token);
+            router.push("/dashboard");
+        }
+    }, [])
 
     return (
         <div>
