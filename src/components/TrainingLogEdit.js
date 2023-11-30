@@ -161,6 +161,7 @@ export default function TrainingLogEdit (props) {
               <option value='11'>December</option>
             </select>
           </label>
+          <div>        </div>
           <label className={styles.button}>
             Day
             <input
@@ -172,6 +173,7 @@ export default function TrainingLogEdit (props) {
               min='0'
             />
           </label>
+          <div>        </div>
           <label className={styles.button}>
             Year
             <input

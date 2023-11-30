@@ -11,6 +11,7 @@ export default function Animals (props) {
   const { currentSearch, setCurrentSearch, create, setCreate, edit, setEdit } =
     props
   const [animals, setAnimals] = useState([])
+  const [loading,setLoading] = useState(true);
   const debouncedEdit = useDebounce(edit, 400)
   const [deleteOccured, setDeleteOccured] = useState(1)
   async function getData () {
@@ -18,6 +19,7 @@ export default function Animals (props) {
     const data = await response.json()
     // setLoading(true)
     setAnimals(data)
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -33,6 +35,7 @@ export default function Animals (props) {
             createFeature={!create}
             setCreate={setCreate}
           />
+          {loading ? <div className="spinner"></div>:<></>}
           {create ? (
             <AnimalCreation setCreate={setCreate} userId={userId} />
           ) : (
@@ -62,6 +65,7 @@ export default function Animals (props) {
           )}
         </div>
       </div>
+      
     </div>
   )
 }
