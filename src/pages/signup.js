@@ -143,6 +143,10 @@ export default function SignupPage () {
             Already have an account? <b>Sign in</b>
           </p>
         </Link>
+        <div className={styles.attribution}>
+          Developed by Emily Wu, Ankith Thalanki, and Ishaan Ali. Designed by
+          Long Liam.
+        </div>
         <Image className={styles.ellipse} src={ellipse} />
       </div>
     </div>

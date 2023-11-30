@@ -19,7 +19,10 @@ export default function Dashboard () {
   const [edit, setEdit] = useState(false)
   const router = useRouter()
   const { userId, admin, username, login, logout } = useAuth()
-
+  useEffect(() => {
+    setCreate(false)
+    setEdit(false)
+  }, [selected])
   function display () {
     if (selected === 'usersadmin') {
       return <AllUsers currentSearch={currentSearch} />

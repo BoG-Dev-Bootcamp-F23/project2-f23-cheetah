@@ -42,8 +42,6 @@ async function handleClick (email, password, router, login) {
     const loading_bar = document.getElementById('loading_bar')
     loading_bar.style.display = 'none'
     loginContainer.style.opacity = 1
-    
-
   }
 }
 
@@ -101,6 +99,10 @@ export default function LoginPage () {
             Don't have an account? <b>Sign up</b>
           </p>
         </Link>
+        <div className={styles.attribution}>
+          Developed by Emily Wu, Ankith Thalanki, and Ishaan Ali. Designed by
+          Long Liam.
+        </div>
         <Image className={styles.ellipse} src={ellipse} />
       </div>
     </div>
