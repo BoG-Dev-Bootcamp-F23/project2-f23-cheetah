@@ -145,7 +145,7 @@ export default function SignupPage () {
         </Link>
         <div className={styles.attribution}>
           Developed by Emily Wu, Ankith Thalanki, and Ishaan Ali. Designed by
-          Long Liam.
+          Long Lam.
         </div>
         <Image className={styles.ellipse} src={ellipse} />
       </div>
