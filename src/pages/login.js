@@ -96,7 +96,7 @@ export default function LoginPage () {
 
         <Link href='/signup' className={styles.link}>
           <p>
-            Don't have an account? <b>Sign up</b>
+            Don&apos;t have an account? <b>Sign up</b>
           </p>
         </Link>
         <div className={styles.attribution}>
