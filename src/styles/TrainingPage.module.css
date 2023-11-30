@@ -1,19 +1,19 @@
 .mainPage {
-    display: flex;
-    flex-direction: row;
-    color: #7C7171;
-    overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  color: #7c7171;
+  overflow: hidden;
 }
 
 .contentType {
-    font-size: 17px;
+  font-size: 17px;
 }
 .trainingList {
-    overflow-y: auto;
-    height: 82vh;
+  overflow-y: auto;
+  height: 82vh;
 }
 .trainingStuff {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

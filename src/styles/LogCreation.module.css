@@ -1,73 +1,71 @@
 @import url(https://fonts.googleapis.com/css?family=Heebo&display=swap);
 
 .date {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
 }
 
 .button {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    font-family: "Heebo";
-    color: black;
-    margin-top: 10px;
-
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-family: 'Heebo';
+  color: black;
+  margin-top: 10px;
 }
 .input {
-    height: 50px;
-    padding: 5px;
-    font-family: "Heebo";
-    
+  height: 50px;
+  padding: 5px;
+  font-family: 'Heebo';
 }
 .note {
-    height: 100px;
-    padding: 5px;
-    font-family: "Heebo";
-    text-align: left;
-    vertical-align: text-top;
+  height: 100px;
+  padding: 5px;
+  font-family: 'Heebo';
+  text-align: left;
+  vertical-align: text-top;
 }
 .buttons {
-    display: flex;
-    flex-direction: row;
-    width: 50%;
-    justify-content: start;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: start;
 }
 
 .buttons button {
-    margin-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 50px;
-    padding-left: 50px;
+  margin-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .saveButton {
-    color: white;
-    font-size: 20px;
-    background-color: green;
-    border-radius: 5px;
-    border-color: green;
+  color: white;
+  font-size: 20px;
+  background-color: green;
+  border-radius: 5px;
+  border-color: green;
 }
 .cancelButton {
-    color: red;
-    background-color: white;
-    border-color: red;
-    border-radius: 5px;
-    font-size: 20px;
+  color: red;
+  background-color: white;
+  border-color: red;
+  border-radius: 5px;
+  font-size: 20px;
 }
 
 .deleteButton {
-    color: white;
-    background-color: red;
-    border-color: red;
-    border-radius: 5px;
-    font-size: 20px;
+  color: white;
+  background-color: red;
+  border-color: red;
+  border-radius: 5px;
+  font-size: 20px;
 }
