@@ -16,7 +16,7 @@ export default async function getTrainingLogs (data) {
       //If pageSize is null or undefined it should just do no limits
       //Sorts in ascending order
 
-      cursor = await TrainingLog.find({ _id: { $lt: lastObjectId } })
+      cursor = await TrainingLog.find({ _id: { $gt: lastObjectId } })
         .sort({ _id: 1 })
         .limit(pageSize) //Gt or lt?
     } else {

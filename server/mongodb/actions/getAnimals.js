@@ -10,12 +10,11 @@ export default async function getAnimals (data) {
   }
 
   try {
-    const pageSize = undefined
-    const lastObjectId = data
+    const { pageSize, lastObjectId } = data
 
     let query = {}
     if (lastObjectId) {
-      query._id = { $lt: lastObjectId }
+      query._id = { $gt: lastObjectId }
     }
     const animals = await Animal.find(query).sort({ _id: 1 }).limit(pageSize)
     return animals
