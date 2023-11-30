@@ -143,6 +143,7 @@ export default function TrainingLogCreation (props) {
             <option value='11'>December</option>
           </select>
         </label>
+        <div>        </div>
         <label className={styles.button}>
           Day
           <input
@@ -154,6 +155,7 @@ export default function TrainingLogCreation (props) {
             min='0'
           />
         </label>
+        <div>        </div>
         <label className={styles.button}>
           Year
           <input

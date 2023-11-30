@@ -13,6 +13,7 @@ export default function TrainingLogs (props) {
   const { currentSearch, setCurrentSearch, create, setCreate, edit, setEdit } =
     props
   const [logList, setLogList] = useState([])
+  const [loading,setLoading] = useState(true);
   const debouncedEdit = useDebounce(edit, 400)
   useEffect(() => {
     //Set training logList and everything
@@ -21,6 +22,7 @@ export default function TrainingLogs (props) {
       const response = await fetch('/api/admin/training')
       const data = await response.json()
       setLogList(data)
+      setLoading(false)
     }
     createList()
   }, [create, debouncedEdit])
@@ -33,6 +35,7 @@ export default function TrainingLogs (props) {
         setEdit={setEdit}
         setCreate={setCreate}
       />
+      {loading ? <div className="spinner"></div>:<></>}
       {edit ? (
         <TrainingLogEdit setEdit={setEdit} edit={edit} userId={userId} />
       ) : (

@@ -12,6 +12,7 @@ export default function AllTrainingLogs (props) {
   //const [ currentSearch, setCurrentSearch ] = useState("");
   const { currentSearch, setCurrentSearch, create, setCreate, edit, setEdit } =
     props
+  const [loading, setLoading] = useState(true)
   const [logList, setLogList] = useState([])
   const debouncedEdit = useDebounce(edit, 400)
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function AllTrainingLogs (props) {
       const response = await fetch('/api/admin/training')
       const data = await response.json()
       setLogList(data)
+      setLoading(false)
     }
     createList()
   }, [create, debouncedEdit])
@@ -32,6 +34,7 @@ export default function AllTrainingLogs (props) {
         createFeature={false}
         setCreate={setCreate}
       />
+      {loading ? <div className='spinner'></div> : <></>}
       {edit ? (
         <TrainingLogEdit setEdit={setEdit} edit={edit} userId={userId} />
       ) : (
@@ -47,8 +50,6 @@ export default function AllTrainingLogs (props) {
       ) : (
         <div className={styles.trainingList}>
           {logList.map(logItem => {
-            
-
             if (admin || logItem.user === userId) {
               //Now check and ensure that the search query exists is in a created search query string.
               //Let the TrainingLogDisplay decide whether to conditionally render itself or not.

@@ -10,6 +10,7 @@ export default function Animals (props) {
   const { userId, admin, username, login, logout } = useAuth()
   const { currentSearch, setCurrentSearch, create, setCreate, edit, setEdit } =
     props
+  const [loading, setLoading] = useState(true)
   const [animals, setAnimals] = useState([])
   const debouncedEdit = useDebounce(edit, 400)
 
@@ -18,6 +19,7 @@ export default function Animals (props) {
     const data = await response.json()
     // setLoading(true)
     setAnimals(data)
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -32,6 +34,7 @@ export default function Animals (props) {
         createFeature={false}
         setCreate={setCreate}
       />
+      {loading ? <div className='spinner'></div> : <></>}
       {create ? (
         <AnimalCreation setCreate={setCreate} userId={userId} />
       ) : (
