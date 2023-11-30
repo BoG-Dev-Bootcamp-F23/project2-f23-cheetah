@@ -27,6 +27,7 @@
 .delete:hover {
   font-weight: bold;
   transition: font-weight 250ms ease;
+  cursor: pointer;
 }
 .user_name {
   font-size: 20px;
