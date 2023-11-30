@@ -15,6 +15,12 @@ export default function Sidebar (props) {
   const { userId, admin, username, login, logout } = useAuth()
   const { selected, setSelected } = props
   const router = useRouter()
+
+  async function signout() {
+    router.push("/login");
+    logout();
+  }
+
   return (
     <div>
       <div className={styles.sidebar}>
@@ -163,7 +169,7 @@ export default function Sidebar (props) {
               width={25}
               height={25}
               className={styles.sidebar_icon}
-              onClick={logout}
+              onClick={() => signout()}
             />
           </Link>
         </div>
