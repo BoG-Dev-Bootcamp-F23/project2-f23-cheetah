@@ -13,7 +13,7 @@ export default function Animals(props) {
     const {currentSearch, setCurrentSearch, create, setCreate, edit, setEdit} = props;
     const [animals,setAnimals] = useState([]);
     const debouncedEdit = useDebounce(edit, 400);
-
+    const [deleteOccured,setDeleteOccured] = useState(1);
     async function getData() {
         const response = await fetch("/api/admin/animals")
         const data = await response.json()
@@ -23,7 +23,7 @@ export default function Animals(props) {
 
     useEffect(() => {
         getData()
-    },[create,debouncedEdit])
+    },[create,debouncedEdit,deleteOccured])
 
     return (
         <div>
@@ -35,7 +35,7 @@ export default function Animals(props) {
             {(create || edit) ? <></> : <div className={styles.animalList}>
             {animals.map((animal) => {
                 if (animal.owner === userId) {
-                    return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} />
+                    return <Animal key={animal._id} setEdit={setEdit}edit={edit}{...animal} debouncedEdit={debouncedEdit} currentSearch={currentSearch} deleteOccured={deleteOccured} setDeleteOccured={setDeleteOccured}/>
                 }
             })}
             </div>}

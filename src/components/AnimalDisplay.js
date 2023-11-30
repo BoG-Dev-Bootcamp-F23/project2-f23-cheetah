@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "@/styles/Animal.module.css";
 
 export default function Animal(props) {
-    const {setEdit, edit, debouncedEdit, currentSearch, admin} = props;
+    const {setEdit, edit, debouncedEdit, currentSearch, admin,deleteOccured, setDeleteOccured} = props;
     const [username,setUsername] = useState("");
     const [animalBreed,setAnimalBreed] = useState("");
     const [animalName,setAnimalName] = useState(""); 
@@ -28,7 +28,13 @@ export default function Animal(props) {
             setProfilePicture(data.profilePicture)
         }
         getInfo(props.owner,props._id)},[debouncedEdit]);
-
+        async function deleteLog() {
+            console.log("In delete occured.");
+            const URL = `/api/animal/?identifier=${props._id}`;
+            await fetch(URL,{method: "DELETE"});
+            console.log("Set deleted");
+            setDeleteOccured(deleteOccured * -1);
+        }
         let checkString = `${animalName}`;
         checkString = checkString.toLowerCase();
 
@@ -40,6 +46,7 @@ export default function Animal(props) {
             <div className={styles.animal}>
             <img className={styles.picture} src={profilePicture} width="350" height="260" onError={handleImageError}></img>
             <div className={styles.info}>
+                <div className={styles.innerInfo}>
                 <div className={styles.user_logo}>
                     <b className={styles.first_letter}>{username.charAt(0).toUpperCase()}</b>
                 </div>
@@ -47,6 +54,9 @@ export default function Animal(props) {
                     <div className={styles.animalInfo}>{animalName} - {animalBreed}</div>
                     <div className={styles.trainingInfo}>{username} • Trained: {hoursTrained} hours</div> 
                 </div>
+                </div>
+                {deleteOccured === undefined ? <></>: <button onClick={deleteLog}className={styles.delete}>X</button>}
+                
             </div>
             <div></div>
         </div>

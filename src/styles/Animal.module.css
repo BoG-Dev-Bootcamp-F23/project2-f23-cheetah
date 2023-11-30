@@ -6,7 +6,7 @@
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.4);
     
     margin-right: 90px;
-    width: 349px;
+    width: 350px;
     border-radius: 15px;
     height: 327px;
 
@@ -44,15 +44,31 @@
     font-family: "Heebo";
     
 }
-
+.innerInfo {
+    display: flex;
+    flex-direction: row;
+}
 .info {
     display: flex;
     flex-direction: row;
     border-radius: 10px;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     margin-top: 15px;
     margin-left: 15px;
+    border-radius: 15px;
+    width: 326px;
     
+}
+.delete {
+    padding-right: 7px;
+    background-color: white;
+    border-style: none;
+    font-size: 20px;
+
     
+}
+.delete:hover {
+    font-weight: bold;
+    transition: font-weight 250ms ease;
 }
